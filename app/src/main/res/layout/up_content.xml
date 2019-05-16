@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginTop="50sp"
+    android:layout_marginEnd="10sp"
+    android:layout_marginStart="10sp"
+    android:layout_marginBottom="30sp"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="50sp"
+        android:layout_marginEnd="10sp"
+        android:layout_marginStart="10sp"
+        android:layout_marginBottom="50sp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical|center_horizontal">
+
+        <TextView
+            android:layout_width="230sp"
+            android:layout_height="50sp"
+            android:text="@string/titulo_subida"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            android:background="@drawable/fondo"
+            android:layout_marginBottom="120sp"/>
+        <Spinner
+            android:layout_width="230sp"
+            android:layout_height="50sp"
+            android:id="@+id/tipoAr" />
+        <TextView
+            android:layout_width="230sp"
+            android:layout_height="50sp"
+            android:background="@drawable/fondo"
+            android:id="@+id/tit"/>
+
+        <TextView
+            android:layout_width="230sp"
+            android:layout_height="50sp"
+            android:background="@drawable/fondo"
+            android:id="@+id/ruta"/>
+
+        <Button
+            android:layout_width="230sp"
+            android:layout_height="50sp"
+            android:text="@string/search"
+            android:id="@+id/buscar"/>
+        <Button
+            android:layout_width="230sp"
+            android:layout_height="50sp"
+            android:text="@string/upfile"
+            android:id="@+id/subir"/>
+
+    </LinearLayout>
+</LinearLayout>

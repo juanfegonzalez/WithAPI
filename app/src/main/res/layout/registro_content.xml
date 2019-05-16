@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <EditText
+        android:id="@+id/editUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/Reguser"
+        android:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/editnom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/Regnom"
+        android:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/editapelli"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/RegApe"
+        android:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/editcorreo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/Regcor"
+        android:inputType="textEmailAddress"
+        android:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/editcorreo2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/Regcor2"
+        android:inputType="textEmailAddress"
+        android:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/editpass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/pass"
+        android:inputType="textPassword"
+        android:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/editpasscorr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/pass2"
+        android:inputType="textPassword"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/registro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/Reg" />
+</LinearLayout>

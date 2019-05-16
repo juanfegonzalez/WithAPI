@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">WithAPI</string>
+    <string name="user">Usuario</string>
+    <string name="pass">Contraseña</string>
+    <string name="pass2">Repita contraseña</string>
+    <string name="Log_in">Acceder</string>
+    <string name="Reg">Registrarse</string>
+    <string name="Regnom">Nombre</string>
+    <string name="Reguser">Usuario</string>
+    <string name="RegApe">Apellido</string>
+    <string name="Regcor">Correo</string>
+    <string name="Regcor2">Repita correo</string>
+    <string name="Corrvacio">El correo o su validación está vacío por favor rellénelo </string>
+    <string name="passvacio">La contraseña o su validación está vacío por favor rellénelo</string>
+    <string name="falloReg">El usuario o la contraseña es incorrecto o el usuario que has elegido ya xiste</string>
+    <string name="okreg">Todo ha salido bien, estas registrado</string>
+    <string name="loginSi">Login correcto</string>
+    <string name="loginNo">Ha habido un problema, por favor contacta con el administrador</string>
+    <string name="Subirarchivo">Subir archivo</string>
+    <string name="settings">Configuración</string>
+    <string name="FAQS">FAQS</string>
+    <string name="WhoAre">Quienes somos</string>
+    <string name="Misarchivos">Mis archivos</string>
+    <string name="descarga">Descargar</string>
+    <string name="search">Buscar</string>
+    <string name="upfile">Subir Archivo</string>
+    <string name="titulo_subida">Subir archivo</string>
+</resources>
