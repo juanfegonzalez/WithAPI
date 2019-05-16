@@ -92,12 +92,12 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
 
     @Override
     public void onClickRecycler(String nombre) {
-        //hacer llamada descarga de archico
+        //hacer llamada descarga de archico mas adelante
 
     }
 
     @Override
-    public void onUpdateClick() {
+    public void onUpdateClick(String tipo,String ruta) {
 
     }
 

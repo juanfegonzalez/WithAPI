@@ -8,7 +8,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.juanfe.withapi.R;
@@ -23,6 +25,7 @@ public class ControladoraSubida extends Fragment implements View.OnClickListener
 
     Button buscar, subir;
     TextView ruta;
+    Spinner tipo;
 
     OnUpdateListener oul;
 
@@ -45,6 +48,18 @@ public class ControladoraSubida extends Fragment implements View.OnClickListener
         buscar = v.findViewById(R.id.buscar);
         subir = v.findViewById(R.id.update);
         ruta = v.findViewById(R.id.ruta);
+        tipo = v.findViewById(R.id.tipoAr);
+        rellenarTipos();
+
+    }
+
+    private void rellenarTipos() {
+        String[] opciones  = {"B","T","TB"};
+        ArrayAdapter<CharSequence> adaptadorSpinner = new ArrayAdapter<CharSequence>(context, android.R.layout.simple_spinner_item,opciones);
+        adaptadorSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tipo.setAdapter(adaptadorSpinner);
+
+
 
     }
 
@@ -74,14 +89,17 @@ public class ControladoraSubida extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.buscar: oul.onSearchClick();break;
-            case R.id.update: oul.onUpdateClick();break;
+            case R.id.buscar:
+                oul.onSearchClick();break;
+            case R.id.update:
+                oul.onUpdateClick(tipo.getSelectedItem().toString(),ruta.getText().toString());
+                break;
         }
 
     }
 
     public interface OnUpdateListener{
-        void onUpdateClick();
-        void onSearchClick();
+        void onUpdateClick(String tipo,String archivo);
+        void onSearchClick();//aqui va el intent
     }
 }
