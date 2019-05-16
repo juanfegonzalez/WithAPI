@@ -1,5 +1,6 @@
 package com.juanfe.withapi;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -24,6 +25,7 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
 
 
     private static final String TAG_MIAR = "mis archivos";
+    private static final int PICKFILE_REQUEST_CODE = 1;
     FrameLayout u_sitio;
     String user,pass,nombre, apellido,email;
     NavigationView nav;
@@ -103,6 +105,10 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
 
     @Override
     public void onSearchClick() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("file/*");
+        startActivityForResult(intent, PICKFILE_REQUEST_CODE);
+       // startActivityForResult();
 
     }
 }
