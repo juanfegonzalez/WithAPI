@@ -89,7 +89,9 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
 
                     case R.id.bonos: break;
 
-                    case R.id.config: break;
+                    case R.id.config:
+
+                        break;
 
 
                 }
