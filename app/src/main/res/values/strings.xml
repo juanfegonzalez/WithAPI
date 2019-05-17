@@ -2,6 +2,7 @@
     <string name="app_name">WithAPI</string>
     <string name="user">Usuario</string>
     <string name="pass">Contraseña</string>
+    <string name="passnew">Nueva Contraseña</string>
     <string name="pass2">Repetir contraseña</string>
     <string name="Log_in">Acceder</string>
     <string name="Reg">Registrarse</string>
@@ -29,4 +30,5 @@
     <string name="nombrearchivo">Nombre</string>
     <string name="titulo_up">Nombre del Fichero</string>
     <string name="ruta">Ruta</string>
+    <string name="save">Guardar</string>
 </resources>

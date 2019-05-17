@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.juanfe.withapi.adaptadores.AdaptadorRMisArchivos;
 import com.juanfe.withapi.controladoras.ControladoraMisArchivos;
+import com.juanfe.withapi.controladoras.ControladoraSettings;
 import com.juanfe.withapi.controladoras.ControladoraSubida;
 
 
@@ -25,10 +26,12 @@ import static com.juanfe.withapi.FragmentActivity.TAG_SWAP_LOG_N;
 import static com.juanfe.withapi.FragmentActivity.TAG_SWAP_LOG_P;
 import static com.juanfe.withapi.FragmentActivity.TAG_SWAP_LOG_U;
 
-public class UserActivity extends AppCompatActivity implements AdaptadorRMisArchivos.OnReciclerListener, ControladoraSubida.OnUpdateListener {
+public class UserActivity extends AppCompatActivity implements AdaptadorRMisArchivos.OnReciclerListener,
+        ControladoraSubida.OnUpdateListener, ControladoraSettings.OnSettingsListener {
 
 
     private static final String TAG_MIAR = "mis archivos";
+    private static final String TAG_SETT = "ajustes";
     private static final int PICKFILE_REQUEST_CODE = 1;
     FrameLayout u_sitio;
     String user,pass,nombre, apellido,email;
@@ -90,6 +93,8 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
                     case R.id.bonos: break;
 
                     case R.id.config:
+                        ft.add(u_sitio.getId(), ControladoraSettings.newInstance(user,pass),TAG_SETT);
+                        ft.addToBackStack(TAG_SETT);
 
                         break;
 
@@ -160,6 +165,12 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
 
         ft.commit();
 
+
+
+    }
+
+    @Override
+    public void onClickGuardar(String nombre, String apellido, String pass, String correo) {
 
 
     }

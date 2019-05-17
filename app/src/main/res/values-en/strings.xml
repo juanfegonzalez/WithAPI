@@ -3,6 +3,7 @@
     <string name="app_name">WithAPI</string>
     <string name="user">User</string>
     <string name="pass">Password</string>
+    <string name="passnew">Nueva Contraseña</string>
     <string name="pass2">Repeat password</string>
     <string name="Log_in">Log in</string>
     <string name="Reg">Sign up</string>
@@ -30,4 +31,5 @@
     <string name="nombrearchivo">Bonos</string>
     <string name="titulo_up">Name of File </string>
     <string name="ruta">Path</string>
+    <string name="save">Guardar</string>
 </resources>
