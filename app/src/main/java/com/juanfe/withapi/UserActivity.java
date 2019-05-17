@@ -2,7 +2,9 @@ package com.juanfe.withapi;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -107,7 +109,8 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
 
         }else {
 
-            letra = "X";
+            letra = "Unknown";
+            //TODO poner imagen png de fondo como que no se sabe quien es
             textheader.setText(letra);
 
         }
@@ -115,20 +118,46 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
 
     @Override
     public void onClickRecycler(String nombre) {
-        //hacer llamada descarga de archico mas adelante
+        //TODO hacer llamada descarga de archico mas adelante
 
     }
 
     @Override
     public void onUpdateClick(String tipo,String ruta) {
+        //TODO subir el archivo con el codigo que me ha dado paco
 
     }
 
     @Override
     public void onSearchClick() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("file/*");
-        startActivityForResult(intent, PICKFILE_REQUEST_CODE);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("*/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        try{
+            startActivityForResult(Intent.createChooser(intent,"R.string.nombrearchivo"),PICKFILE_REQUEST_CODE);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        //startActivityForResult(intent, PICKFILE_REQUEST_CODE);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Log.v("test",(data.getData().toString()));
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        //ft.add(u_sitio.getId(), ControladoraMisArchivos.newInstance(user,pass),TAG_MIAR);
+        ControladoraSubida cs = (ControladoraSubida) fm.findFragmentByTag(TAG_MIAR);
+
+        cs.setTextRuta(data.getData().getPath());
+
+        ft.commit();
+
 
 
     }

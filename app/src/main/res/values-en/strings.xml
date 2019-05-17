@@ -3,20 +3,20 @@
     <string name="app_name">WithAPI</string>
     <string name="user">User</string>
     <string name="pass">Password</string>
-    <string name="pass2">Repita contraseña</string>
+    <string name="pass2">Repeat password</string>
     <string name="Log_in">Log in</string>
     <string name="Reg">Sign up</string>
     <string name="Regnom">Name</string>
     <string name="Reguser">User</string>
     <string name="RegApe">Last name</string>
     <string name="Regcor">Email</string>
-    <string name="Regcor2">Repita Email</string>
-    <string name="Corrvacio">Email or validation is empty please rellénelo</string>
-    <string name="passvacio">Password or validation is empty,please rellénelo</string>
+    <string name="Regcor2">Repeat Email</string>
+    <string name="Corrvacio">Email or validation is empty please fill it out</string>
+    <string name="passvacio">Password or validation is empty,please fill it out</string>
     <string name="falloReg">The user or  password is incorrect or the user is exist</string>
     <string name="okreg">Todo ha salido bien, you are sign up</string>
-    <string name="loginSi">Login ok</string>
-    <string name="loginNo">We have an issue, please contact with your Administrator systems</string>
+    <string name="loginSi">Login OK</string>
+    <string name="loginNo">We have an issue, please contact with your systems administration</string>
     <string name="Subirarchivo">Update file</string>
     <string name="settings">Settings</string>
     <string name="FAQS">FAQS</string>
@@ -27,4 +27,7 @@
     <string name="upfile">Update file</string>
     <string name="titulo_subida">Update File</string>
     <string name="Bonos">Bonos</string>
+    <string name="nombrearchivo">Bonos</string>
+    <string name="titulo_up">Name of File </string>
+    <string name="ruta">Path</string>
 </resources>

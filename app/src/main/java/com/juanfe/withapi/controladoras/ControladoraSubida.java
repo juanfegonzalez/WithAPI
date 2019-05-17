@@ -58,9 +58,11 @@ public class ControladoraSubida extends Fragment implements View.OnClickListener
         ArrayAdapter<CharSequence> adaptadorSpinner = new ArrayAdapter<CharSequence>(context, android.R.layout.simple_spinner_item,opciones);
         adaptadorSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tipo.setAdapter(adaptadorSpinner);
+    }
 
+    public void setTextRuta(String ruta){
 
-
+        this.ruta.setText(ruta);
     }
 
 
@@ -100,6 +102,6 @@ public class ControladoraSubida extends Fragment implements View.OnClickListener
 
     public interface OnUpdateListener{
         void onUpdateClick(String tipo,String archivo);
-        void onSearchClick();//aqui va el intent
+        void onSearchClick();//aqui va el intent hacia la busqueda en la memoria
     }
 }

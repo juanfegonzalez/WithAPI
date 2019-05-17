@@ -34,12 +34,17 @@
         <EditText
             android:layout_width="230sp"
             android:layout_height="50sp"
+            android:hint="@string/titulo_up"
+            android:textAlignment="center"
             android:background="@drawable/fondo"
             android:id="@+id/tit"/>
 
         <TextView
             android:layout_width="230sp"
             android:layout_height="50sp"
+            android:text="Ruta"
+            android:textSize="30sp"
+            android:textAlignment="center"
             android:background="@drawable/fondo"
             android:id="@+id/ruta"/>
 
