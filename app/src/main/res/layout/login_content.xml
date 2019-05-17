@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/user"
+        android:text="admin"
         android:layout_marginBottom="20sp"
         android:id="@+id/user"/>
     <EditText
@@ -17,6 +18,7 @@
         android:layout_marginBottom="20sp"
         android:inputType="textPassword"
         android:hint="@string/pass"
+        android:text="admin"
         android:id="@+id/pass"/>
     <LinearLayout
         android:layout_width="match_parent"

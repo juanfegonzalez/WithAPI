@@ -46,7 +46,7 @@ public class ControladoraSubida extends Fragment implements View.OnClickListener
 
     private void instancias(View v) {
         buscar = v.findViewById(R.id.buscar);
-        subir = v.findViewById(R.id.update);
+        subir = v.findViewById(R.id.subir);
         ruta = v.findViewById(R.id.ruta);
         tipo = v.findViewById(R.id.tipoAr);
         rellenarTipos();
@@ -91,7 +91,7 @@ public class ControladoraSubida extends Fragment implements View.OnClickListener
         switch (v.getId()){
             case R.id.buscar:
                 oul.onSearchClick();break;
-            case R.id.update:
+            case R.id.subir:
                 oul.onUpdateClick(tipo.getSelectedItem().toString(),ruta.getText().toString());
                 break;
         }

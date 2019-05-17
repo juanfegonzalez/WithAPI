@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -22,12 +23,15 @@ import com.juanfe.withapi.controladoras.ControladorRegistro;
 import com.juanfe.withapi.controladoras.ControladoraLogin;
 import com.juanfe.withapi.dialogos.DialogoLogin;
 import com.juanfe.withapi.dialogos.DialogoRegSi;
+import com.juanfe.withapi.utils.Constantes;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.juanfe.withapi.utils.Constantes.DOMINIO;
 
 public class FragmentActivity extends AppCompatActivity implements ControladorRegistro.OnClickRegCallBack, ControladoraLogin.OnLoginListener, DialogoRegSi.OnDialogoRegListener {
 
@@ -43,9 +47,11 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
     final static String TAG_SWAP_LOG_A = "apellido login";
     final static String TAG_SWAP_LOG_P = "pass login";
     final static String TAG_SWAP_LOG_E = "email login";
+    final static String API = "";
 
     String usuario, pass,nombre, apellido,email;
     Boolean ok;
+
 
 
     @Override
@@ -92,7 +98,10 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
 
 
     private void enviarJson(String user, String pass) {
-        String API = "http://192.168.1.33:8001/usuarios/login/";
+        String API = DOMINIO + "usuarios/login/";
+        Log.v("test",API);
+
+        //String API = "http://192.168.43.157:8001/usuarios/login/";
         HashMap<String, String> hm = new HashMap();
         hm.put("username", user);
         hm.put("password", pass);
@@ -114,7 +123,7 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                //Log.e("error1",error.toString());
+                Log.e("error1",error.toString());
                 Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
             }
 
@@ -146,6 +155,9 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
 
     private void procesarRespuesta(JSONObject response) throws JSONException {
         ok = response.getBoolean("ok");
+
+        Log.v("test",response.toString());
+
         if (ok){
             JSONObject sal = response.getJSONObject("salida");
 
@@ -162,14 +174,14 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
             i.putExtra(TAG_SWAP_LOG_P,pass);
             i.putExtra(TAG_SWAP_LOG_E,email);
             final DialogoLogin dialogoLogin = DialogoLogin.newInstance(ok);
-
+            dialogoLogin.show(getSupportFragmentManager(),TAG_DIA_LOG_SI);
 
             Handler h = new Handler();
             h.postDelayed(new Runnable() {
                 @Override
                 public void run() {
 
-                    dialogoLogin.show(getSupportFragmentManager(),TAG_DIA_LOG_SI);
+
                 }
             },2000);
             dialogoLogin.dismiss();

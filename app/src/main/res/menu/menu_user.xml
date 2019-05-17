@@ -3,6 +3,7 @@
     <item android:title="@string/Subirarchivo" android:id="@+id/update"/>
     <item android:title="@string/Misarchivos" android:id="@+id/misarch"/>
     <item android:title="@string/WhoAre" android:id="@+id/who"/>
+    <item android:title="@string/Bonos" android:id="@+id/bonos"/>
     <item android:title="@string/FAQS" android:id="@+id/faqs"/>
     <item android:title="@string/settings" android:id="@+id/config"/>
 </menu>

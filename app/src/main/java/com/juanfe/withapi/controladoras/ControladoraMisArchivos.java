@@ -23,7 +23,7 @@ public class ControladoraMisArchivos extends Fragment {
     final static String USER_TAG ="usuario";
     final static String PASS_TAG ="pass";
     String user,pass;
-    ArrayList lista_archivos;
+    ArrayList<String> lista_archivos;
 
     @Nullable
     @Override
@@ -45,10 +45,11 @@ public class ControladoraMisArchivos extends Fragment {
 
 
     private void rellenarLista() {
-
-
-
-
+        lista_archivos = new ArrayList<String>();
+        lista_archivos.add("e");
+        lista_archivos.add("e");
+        lista_archivos.add("e");
+        lista_archivos.add("e");
 
     }
 

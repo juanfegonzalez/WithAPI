@@ -16,34 +16,36 @@ public class DialogoRegSi extends DialogFragment {
     Boolean msg;
     Context context;
     OnDialogoRegListener odrl;
+    int message;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder b = new AlertDialog.Builder(context);
-        if (msg.equals("True")){
-            b.setMessage(R.string.okreg);
-            b.setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    //todo buscar fragment login y borrar fragment registro
-                    odrl.onOkclick();
-
-
-
-                }
-            });
-        }else {
-            b.setMessage(R.string.falloReg);
-            b.setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            });
-        }
+        putMessage();
+        b.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //todo buscar fragment login y borrar fragment registro
+                odrl.onOkclick();
+            }
+        });
+        b.setMessage(message);
 
         return b.show();
+    }
+
+    private int putMessage() {
+        if (msg){
+            message = R.string.okreg;
+
+
+        }else {
+            message=R.string.falloReg;
+
+        }
+
+        return message;
     }
 
     @Override

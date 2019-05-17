@@ -29,6 +29,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.juanfe.withapi.utils.Constantes.DOMINIO;
+
 public class ControladorRegistro extends Fragment implements View.OnClickListener {
 
     EditText usuario, nombre, apellido, pass, pass2, correo, correo2;
@@ -105,7 +107,7 @@ public class ControladorRegistro extends Fragment implements View.OnClickListene
     }
 
     private void enviarJson() {
-        String API = "http://192.168.1.33:8001/usuarios/register/";
+        String API = DOMINIO+"usuarios/register/";
         HashMap<String, String> hm = new HashMap();
         hm.put("password",  pass.getText().toString());
         hm.put("username",  usuario.getText().toString() );
@@ -163,8 +165,8 @@ public class ControladorRegistro extends Fragment implements View.OnClickListene
     private void procesarRespuesta(JSONObject response) throws JSONException {
         ok = response.getString("ok");
         Boolean asd = Boolean.valueOf(ok);
-        Log.v("test", ok);
-        Log.v("test", String.valueOf(asd));
+        //Log.v("test", ok);
+        //Log.v("test", String.valueOf(asd));
         oclireg.onRequest(asd);
 
 
