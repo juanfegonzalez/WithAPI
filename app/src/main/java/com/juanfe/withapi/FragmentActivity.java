@@ -23,7 +23,6 @@ import com.juanfe.withapi.controladoras.ControladorRegistro;
 import com.juanfe.withapi.controladoras.ControladoraLogin;
 import com.juanfe.withapi.dialogos.DialogoLogin;
 import com.juanfe.withapi.dialogos.DialogoRegSi;
-import com.juanfe.withapi.utils.Constantes;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -99,7 +98,7 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
 
     private void enviarJson(String user, String pass) {
         String API = DOMINIO + "usuarios/login/";
-        Log.v("test",API);
+       // Log.v("test",API);
 
         //String API = "http://192.168.43.157:8001/usuarios/login/";
         HashMap<String, String> hm = new HashMap();
