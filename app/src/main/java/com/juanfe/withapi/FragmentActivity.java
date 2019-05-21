@@ -30,11 +30,15 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.juanfe.withapi.utils.Constantes.APITOKEN;
+import static com.juanfe.withapi.utils.Constantes.CLIENTID;
+import static com.juanfe.withapi.utils.Constantes.CLIENTSECRET;
 import static com.juanfe.withapi.utils.Constantes.DOMINIO;
 
 public class FragmentActivity extends AppCompatActivity implements ControladorRegistro.OnClickRegCallBack, ControladoraLogin.OnLoginListener, DialogoRegSi.OnDialogoRegListener {
 
     private static final String TAG_FRG_REG_1 = "Fragment registro desde login";
+
     FrameLayout site;
     final static String TAG_DIA_REG = "request echa";
     final static String TAG_DIA_LOG_SI = "dialogo login";
@@ -46,10 +50,12 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
     final static String TAG_SWAP_LOG_A = "apellido login";
     final static String TAG_SWAP_LOG_P = "pass login";
     final static String TAG_SWAP_LOG_E = "email login";
+    final static String TAG_SWAP_LOG_T = "token";
     final static String API = "";
 
-    String usuario, pass,nombre, apellido,email;
+    String usuario, password,pass,nombre, apellido,email;
     Boolean ok;
+    Intent i;
 
 
 
@@ -79,6 +85,7 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
 
     @Override
     public void onLoginClick(String user, String pass) {
+        this.password = pass;
         enviarJson(user, pass);
 
     }
@@ -111,7 +118,7 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    procesarRespuesta(response);
+                    procesarLogin(response);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -131,8 +138,7 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
             public Map<String, String> getHeaders() throws AuthFailureError {
                 final HashMap<String, String> headers = new HashMap<String, String>();
                 headers.put("Access-Control-Allow-Origin", "*");
-                headers.put("token", "");
-                headers.put("Content-Type", "application/json;");
+                headers.put("Content-Type", "application/json");
                 headers.put("Accept", "application/json");
                 return headers;
             }
@@ -149,15 +155,62 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
 
     //todo hacer validaciones de correo con  *@*.*
 
+    private void enviarJsonToken(String user, String pass) {
+        String API = APITOKEN;
 
 
 
-    private void procesarRespuesta(JSONObject response) throws JSONException {
+
+
+        String content = "?grant_type=password&username="+user+"&password="+password+"&client_id="+CLIENTID+"&client_secret="+CLIENTSECRET;
+
+
+
+        JsonObjectRequest peticionJSON = new JsonObjectRequest(Request.Method.POST, API+content,null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    procesarRespuestaAUTH(response);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("error1",error.toString());
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+            }
+
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                final HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Access-Control-Allow-Origin", "*");
+                headers.put("Content-Type", "application/json");
+                return headers;
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return super.getBodyContentType();
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        requestQueue.add(peticionJSON);
+    }
+
+
+
+
+    private void procesarLogin(JSONObject response) throws JSONException {
         ok = response.getBoolean("ok");
 
         Log.v("test",response.toString());
 
         if (ok){
+
             JSONObject sal = response.getJSONObject("salida");
 
             usuario = (String) sal.get("username");
@@ -165,13 +218,33 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
             apellido = (String) sal.get("last_name");
             pass = (String) sal.get("password");
             email = (String) sal.get("email");
-
-            Intent i = new Intent(getApplicationContext(),UserActivity.class);
+            enviarJsonToken(usuario,pass);
+            i = new Intent(getApplicationContext(),UserActivity.class);
             i.putExtra(TAG_SWAP_LOG_U,usuario);
             i.putExtra(TAG_SWAP_LOG_N,nombre);
             i.putExtra(TAG_SWAP_LOG_A,apellido);
             i.putExtra(TAG_SWAP_LOG_P,pass);
             i.putExtra(TAG_SWAP_LOG_E,email);
+        }
+
+    }
+
+    private void procesarRespuestaAUTH(JSONObject response) throws JSONException {
+        Log.v("test",response.toString());
+
+        if (ok){
+            String token = response.getString("access_token");
+
+
+            /*JSONObject sal = response.getJSONObject("salida");
+
+            usuario = (String) sal.get("username");
+            nombre = (String) sal.get("first_name");
+            apellido = (String) sal.get("last_name");
+            pass = (String) sal.get("password");
+            email = (String) sal.get("email");*/
+
+            i.putExtra(TAG_SWAP_LOG_T,token);
             final DialogoLogin dialogoLogin = DialogoLogin.newInstance(ok);
             dialogoLogin.show(getSupportFragmentManager(),TAG_DIA_LOG_SI);
 

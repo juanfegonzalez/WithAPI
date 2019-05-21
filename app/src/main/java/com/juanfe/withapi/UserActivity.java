@@ -24,6 +24,7 @@ import static com.juanfe.withapi.FragmentActivity.TAG_SWAP_LOG_A;
 import static com.juanfe.withapi.FragmentActivity.TAG_SWAP_LOG_E;
 import static com.juanfe.withapi.FragmentActivity.TAG_SWAP_LOG_N;
 import static com.juanfe.withapi.FragmentActivity.TAG_SWAP_LOG_P;
+import static com.juanfe.withapi.FragmentActivity.TAG_SWAP_LOG_T;
 import static com.juanfe.withapi.FragmentActivity.TAG_SWAP_LOG_U;
 
 public class UserActivity extends AppCompatActivity implements AdaptadorRMisArchivos.OnReciclerListener,
@@ -34,7 +35,7 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
     private static final String TAG_SETT = "ajustes";
     private static final int PICKFILE_REQUEST_CODE = 1;
     FrameLayout u_sitio;
-    String user,pass,nombre, apellido,email;
+    String user,pass,nombre, apellido,email,token;
     NavigationView nav;
     TextView textheader;
     String letra;
@@ -46,6 +47,7 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
         u_sitio = findViewById(R.id.sitiouser);
 
         user = getIntent().getStringExtra(TAG_SWAP_LOG_U);
+        token = getIntent().getStringExtra(TAG_SWAP_LOG_T);
         pass = getIntent().getStringExtra(TAG_SWAP_LOG_P);
         nombre = getIntent().getStringExtra(TAG_SWAP_LOG_N);
         apellido = getIntent().getStringExtra(TAG_SWAP_LOG_A);

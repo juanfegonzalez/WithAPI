@@ -22,5 +22,6 @@ public class Splash2Activity extends AppCompatActivity {
 
             }
         },2000);
+        //MIRAR COMO ALMACENAR EN ARCHIVO DE TEXTO LAS VARIABLES DE CLIENTID Y CLIENTSECRET
     }
 }

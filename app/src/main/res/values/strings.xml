@@ -31,4 +31,5 @@
     <string name="titulo_up">Nombre del Fichero</string>
     <string name="ruta">Ruta</string>
     <string name="save">Guardar</string>
+    <string name="contra">Contratar</string>
 </resources>
