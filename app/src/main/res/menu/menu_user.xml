@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="@string/Subirarchivo" android:id="@+id/update"/>
-    <item android:title="@string/Misarchivos" android:id="@+id/misarch"/>
-    <item android:title="@string/WhoAre" android:id="@+id/who"/>
-    <item android:title="@string/Bonos" android:id="@+id/bonos"/>
-    <item android:title="@string/FAQS" android:id="@+id/faqs"/>
-    <item android:title="@string/settings" android:id="@+id/config"/>
+    <item
+        android:id="@+id/update"
+        android:title="@string/Subirarchivo" android:icon="@android:drawable/ic_menu_recent_history" />
+    <item
+        android:id="@+id/misarch"
+        android:title="@string/Misarchivos" android:icon="@android:drawable/ic_menu_set_as"/>
+    <item
+        android:id="@+id/who"
+        android:title="@string/WhoAre" android:icon="@android:drawable/ic_dialog_info" />
+    <item
+        android:id="@+id/bonos"
+        android:title="@string/Bonos" android:icon="@android:drawable/ic_dialog_info" />
+    <item
+        android:id="@+id/faqs"
+        android:title="@string/FAQS" android:icon="@android:drawable/ic_menu_help" />
+    <item android:title="@string/settings">
+        <menu>
+        <item
+            android:id="@+id/config"
+            android:title="@string/settings" android:icon="@android:drawable/ic_menu_preferences" />
+        </menu>
+    </item>
 </menu>
