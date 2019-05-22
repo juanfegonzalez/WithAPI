@@ -51,11 +51,13 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
     final static String TAG_SWAP_LOG_P = "pass login";
     final static String TAG_SWAP_LOG_E = "email login";
     final static String TAG_SWAP_LOG_T = "token";
+    final static String TAG_SWAP_LOG_I = "id";
     final static String API = "";
 
     String usuario, password,pass,nombre, apellido,email;
     Boolean ok;
     Intent i;
+    int id;
 
 
 
@@ -155,7 +157,7 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
 
     //todo hacer validaciones de correo con  *@*.*
 
-    private void enviarJsonToken(String user, String pass) {
+    private void enviarJsonToken(String user) {
         String API = APITOKEN;
 
 
@@ -212,19 +214,20 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
         if (ok){
 
             JSONObject sal = response.getJSONObject("salida");
-
+            id = sal.getInt("id");
             usuario = (String) sal.get("username");
             nombre = (String) sal.get("first_name");
             apellido = (String) sal.get("last_name");
             pass = (String) sal.get("password");
             email = (String) sal.get("email");
-            enviarJsonToken(usuario,pass);
+            enviarJsonToken(usuario);
             i = new Intent(getApplicationContext(),UserActivity.class);
             i.putExtra(TAG_SWAP_LOG_U,usuario);
             i.putExtra(TAG_SWAP_LOG_N,nombre);
             i.putExtra(TAG_SWAP_LOG_A,apellido);
-            i.putExtra(TAG_SWAP_LOG_P,pass);
+            i.putExtra(TAG_SWAP_LOG_P,password);
             i.putExtra(TAG_SWAP_LOG_E,email);
+            i.putExtra(TAG_SWAP_LOG_I,id);
         }
 
     }

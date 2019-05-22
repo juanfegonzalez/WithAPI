@@ -32,4 +32,5 @@
     <string name="ruta">Ruta</string>
     <string name="save">Guardar</string>
     <string name="contra">Contratar</string>
+    <string name="guardar">Se ha guardado correctamente</string>
 </resources>

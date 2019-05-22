@@ -47,6 +47,7 @@ public class ControladoraSettings extends Fragment {
                         Toast.makeText(context,"pass no es igual",Toast.LENGTH_LONG).show();
 
                     }else {
+
                         osl.onClickGuardar(nombre.getText().toString(),apellido.getText().toString(),
                                 editpass.getText().toString(),correo.getText().toString());
                     }
