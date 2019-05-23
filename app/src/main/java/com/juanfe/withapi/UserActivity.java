@@ -125,6 +125,12 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
 
                         break;
 
+                    case R.id.menuweb:
+
+
+
+                        break;
+
 
                 }
                 ft.commit();

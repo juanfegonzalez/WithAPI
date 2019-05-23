@@ -15,6 +15,14 @@
     <item
         android:id="@+id/faqs"
         android:title="@string/FAQS" android:icon="@android:drawable/ic_menu_help" />
+    <item android:title="@string/webview">
+        <menu>
+            <item android:title="@string/webview"
+                android:id="@+id/menuweb" android:icon="@android:drawable/ic_dialog_info">
+
+            </item>
+        </menu>
+    </item>
     <item android:title="@string/settings">
         <menu>
         <item
@@ -22,4 +30,5 @@
             android:title="@string/settings" android:icon="@android:drawable/ic_menu_preferences" />
         </menu>
     </item>
+
 </menu>
