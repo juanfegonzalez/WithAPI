@@ -35,4 +35,6 @@
     <string name="contra">Contratar</string>
     <string name="guardar">Saved successfully</string>
     <string name="webview">Web version</string>
+    <string name="todook">All is okey</string>
+    <string name="todoko">Algo ha salido mal, mira el log</string>
 </resources>

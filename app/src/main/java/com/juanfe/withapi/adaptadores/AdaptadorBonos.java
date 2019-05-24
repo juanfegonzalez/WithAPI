@@ -3,12 +3,14 @@ package com.juanfe.withapi.adaptadores;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.design.behavior.HideBottomViewOnScrollBehavior;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.juanfe.withapi.R;
@@ -42,10 +44,12 @@ public class AdaptadorBonos extends RecyclerView.Adapter<AdaptadorBonos.HolderB>
         final Bono b = (Bono) lista.get(i);
         holderB.getCantidad().setText(b.getCantidad());
         holderB.getPrecio().setText(b.getPrecio());
-        holderB.getContratado().setOnClickListener(new View.OnClickListener() {
+        holderB.getDescripcion().setText(b.getDescripcion());
+        holderB.getTitulo().setText(b.getNombre());
+        holderB.getLinear().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ocl.OnCheckedClick(b.getCantidad(),b.getPrecio(),b.getNombre());
+                ocl.OnCheckedClick(b.getId());
             }
         });
 
@@ -58,16 +62,18 @@ public class AdaptadorBonos extends RecyclerView.Adapter<AdaptadorBonos.HolderB>
     }
 
     class HolderB extends RecyclerView.ViewHolder {
-        TextView precio,cantidad;
-        Button contratado;
+        TextView precio,cantidad,titulo, descripcion;
+        CardView linear;
+
 
         public HolderB(@NonNull View itemView) {
             super (itemView);
 
             precio = itemView.findViewById(R.id.precio);
             cantidad = itemView.findViewById(R.id.cantidad);
-            contratado = itemView.findViewById(R.id.checkB);
-
+            titulo = itemView.findViewById(R.id.titulo);
+            descripcion = itemView.findViewById(R.id.descripcion);
+            linear = itemView.findViewById(R.id.card);
         }
 
         public TextView getPrecio() {
@@ -78,13 +84,21 @@ public class AdaptadorBonos extends RecyclerView.Adapter<AdaptadorBonos.HolderB>
             return cantidad;
         }
 
-        public Button getContratado() {
-            return contratado;
+        public TextView getTitulo() {
+            return titulo;
+        }
+
+        public TextView getDescripcion() {
+            return descripcion;
+        }
+
+        public CardView getLinear() {
+            return linear;
         }
     }
 
     public interface OnCheckedListener{
-        void OnCheckedClick(int cantidad, int precio, String nombre);
+        void OnCheckedClick(String id);
 
     }
 }

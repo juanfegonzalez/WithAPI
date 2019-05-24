@@ -78,10 +78,10 @@ public class ControladorRegistro extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
         if (v.getId() == registrar.getId()) {
-            /*
+
             if (pass.getText().toString().isEmpty() || pass2.getText().toString().isEmpty()){
                 //Toast.makeText(context,R.string.passvacio,Toast.LENGTH_LONG).show();
-                Toast.makeText(context,"pass vacio",Toast.LENGTH_LONG).show();
+                Toast.makeText(context,R.string.passvacio,Toast.LENGTH_LONG).show();
 
             }else if (!(pass.getText().toString().equals(pass2.getText().toString()))){
                 //Toast.makeText(context,R.string.passvacio,Toast.LENGTH_LONG).show();
@@ -89,20 +89,19 @@ public class ControladorRegistro extends Fragment implements View.OnClickListene
 
             }else if (correo.getText().toString().isEmpty() || correo2.getText().toString().isEmpty()){
                 //Toast.makeText(context,R.string.Corrvacio,Toast.LENGTH_LONG).show();
-                Toast.makeText(context,"correo vacio",Toast.LENGTH_LONG).show();
+                Toast.makeText(context,"email vacio",Toast.LENGTH_LONG).show();
 
             }else if (!(correo.getText().toString().equals(correo2.getText().toString()))){
                 //Toast.makeText(context,R.string.Corrvacio,Toast.LENGTH_LONG).show();
                 Toast.makeText(context,"correo no es igual",Toast.LENGTH_LONG).show();
 
-            }else {*/
+            }else {
                 enviarJson();
                 Log.i("test", "haentrado");
-                //TODO mirar porque es una referencia nula
-                //
 
 
-           // }
+
+           }
         }
     }
 
@@ -165,8 +164,7 @@ public class ControladorRegistro extends Fragment implements View.OnClickListene
     private void procesarRespuesta(JSONObject response) throws JSONException {
         ok = response.getString("ok");
         Boolean asd = Boolean.valueOf(ok);
-        //Log.v("test", ok);
-        //Log.v("test", String.valueOf(asd));
+
         oclireg.onRequest(asd);
 
 

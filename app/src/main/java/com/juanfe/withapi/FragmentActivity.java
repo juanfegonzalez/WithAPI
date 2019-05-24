@@ -35,7 +35,8 @@ import static com.juanfe.withapi.utils.Constantes.CLIENTID;
 import static com.juanfe.withapi.utils.Constantes.CLIENTSECRET;
 import static com.juanfe.withapi.utils.Constantes.DOMINIO;
 
-public class FragmentActivity extends AppCompatActivity implements ControladorRegistro.OnClickRegCallBack, ControladoraLogin.OnLoginListener, DialogoRegSi.OnDialogoRegListener {
+public class FragmentActivity extends AppCompatActivity implements ControladorRegistro.OnClickRegCallBack,
+        ControladoraLogin.OnLoginListener, DialogoRegSi.OnDialogoRegListener {
 
     private static final String TAG_FRG_REG_1 = "Fragment registro desde login";
 
@@ -52,7 +53,6 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
     final static String TAG_SWAP_LOG_E = "email login";
     final static String TAG_SWAP_LOG_T = "token";
     final static String TAG_SWAP_LOG_I = "id";
-    final static String API = "";
 
     String usuario, password,pass,nombre, apellido,email;
     Boolean ok;
@@ -78,19 +78,21 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
         ft.commit();
 
     }
-
+    //viene de controladora registro
     @Override
     public void onRequest(Boolean msn) {
         DialogoRegSi drs = DialogoRegSi.newInstance(msn);
         drs.show(getSupportFragmentManager(), TAG_DIA_REG);
     }
-
+    //viene de controladora login
     @Override
     public void onLoginClick(String user, String pass) {
         this.password = pass;
         enviarJson(user, pass);
 
     }
+
+    //vieene de controladora login cuando pulsas boton de registro carga el fragment de registro
 
     @Override
     public void onRegisterClick() {
@@ -104,7 +106,7 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
 
     }
 
-
+    //viene de controladora login para la autenticacion en 2 pasos
     private void enviarJson(String user, String pass) {
         String API = DOMINIO + "usuarios/login/";
        // Log.v("test",API);
@@ -203,9 +205,6 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
         requestQueue.add(peticionJSON);
     }
 
-
-
-
     private void procesarLogin(JSONObject response) throws JSONException {
         ok = response.getBoolean("ok");
 
@@ -278,7 +277,7 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
             finish();
         }
     }
-
+    //viene de dialogo registro
     @Override
     public void onOkclick() {
         FragmentManager fm = getSupportFragmentManager();

@@ -30,19 +30,21 @@
         <Spinner
             android:layout_width="230sp"
             android:layout_height="50sp"
-            android:id="@+id/tipoAr" />
+            android:id="@+id/tipoAr"
+            android:layout_marginBottom="10sp"/>
         <EditText
             android:layout_width="230sp"
             android:layout_height="50sp"
             android:hint="@string/titulo_up"
+            android:inputType="textUri"
             android:textAlignment="center"
-            android:background="@drawable/fondo"
+            android:background="@drawable/fondob"
             android:id="@+id/tit"/>
 
         <TextView
             android:layout_width="230sp"
             android:layout_height="50sp"
-            android:text="Ruta"
+            android:text="@string/ruta"
             android:textSize="30sp"
             android:textAlignment="center"
             android:background="@drawable/fondo"

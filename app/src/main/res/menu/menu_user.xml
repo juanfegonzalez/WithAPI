@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/update"
-        android:title="@string/Subirarchivo" android:icon="@android:drawable/ic_menu_recent_history" />
+        android:title="@string/Subirarchivo" android:icon="@android:drawable/ic_menu_set_as" />
     <item
         android:id="@+id/misarch"
-        android:title="@string/Misarchivos" android:icon="@android:drawable/ic_menu_set_as"/>
+        android:title="@string/Misarchivos" android:icon="@android:drawable/ic_menu_recent_history"/>
     <item
         android:id="@+id/who"
-        android:title="@string/WhoAre" android:icon="@android:drawable/ic_dialog_info" />
+        android:title="@string/WhoAre" android:icon="@android:drawable/ic_input_get" />
     <item
         android:id="@+id/bonos"
-        android:title="@string/Bonos" android:icon="@android:drawable/ic_dialog_info" />
+        android:title="@string/Bonos" android:icon="@android:drawable/ic_dialog_email" />
     <item
         android:id="@+id/faqs"
         android:title="@string/FAQS" android:icon="@android:drawable/ic_menu_help" />

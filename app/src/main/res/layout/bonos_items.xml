@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_margin="40sp"
     android:orientation="vertical"
+    android:id="@+id/card"
     android:layout_height="wrap_content">
 
     <TextView
@@ -14,12 +15,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cantidad"/>
-
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/contra"
-        android:id="@+id/checkB"/>
+        android:id="@+id/titulo"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/descripcion"/>
+
+
+
 
 
 
