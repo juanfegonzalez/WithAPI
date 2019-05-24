@@ -147,11 +147,8 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
                         ft.add(u_sitio.getId(),new ControladoraWeb(),TAG_WEB);
                         ft.addToBackStack(TAG_WEB);
 
-
-
                         break;
-
-
+                        
                 }
                 ft.commit();
                 return true;
@@ -451,7 +448,8 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
         FragmentTransaction ft  =fm.beginTransaction();
         Fragment f = fm.findFragmentByTag(TAG_FAQS);
         int pila =  fm.getBackStackEntryCount();
-        ft.remove(f);
+        //ft.remove(f);
+        ft.detach(f);
         ft.commit();
 
     }

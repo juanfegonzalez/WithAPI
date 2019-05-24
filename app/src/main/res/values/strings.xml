@@ -37,4 +37,6 @@
     <string name="todook">Todo ha salido bien</string>
     <string name="todoko">Algo ha salido mal, mira el log</string>
     <string name="faqs">FAQS</string>
+    <string name="recuperarcontra">¿Has olvidado tu contraseña? pulsa aquí</string>
+    <string name="miraremail">Revisa tu correo para restablecer tu contraseña</string>
 </resources>

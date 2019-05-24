@@ -21,8 +21,10 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.juanfe.withapi.controladoras.ControladorRegistro;
 import com.juanfe.withapi.controladoras.ControladoraLogin;
+import com.juanfe.withapi.dialogos.DialogRecuContra;
 import com.juanfe.withapi.dialogos.DialogoLogin;
 import com.juanfe.withapi.dialogos.DialogoRegSi;
+import com.juanfe.withapi.dialogos.DialogoRevisarCorreo;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,9 +38,11 @@ import static com.juanfe.withapi.utils.Constantes.CLIENTSECRET;
 import static com.juanfe.withapi.utils.Constantes.DOMINIO;
 
 public class FragmentActivity extends AppCompatActivity implements ControladorRegistro.OnClickRegCallBack,
-        ControladoraLogin.OnLoginListener, DialogoRegSi.OnDialogoRegListener {
+        ControladoraLogin.OnLoginListener, DialogoRegSi.OnDialogoRegListener, DialogRecuContra.OnDialogoRecuListener {
 
     private static final String TAG_FRG_REG_1 = "Fragment registro desde login";
+    private static final String TAG_REC_DIA = "recuperar contrasenia";
+    private static final String TAG_REV_CONTRA = "revisar correo";
 
     FrameLayout site;
     final static String TAG_DIA_REG = "request echa";
@@ -103,6 +107,13 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
         ft.add(site.getId(), new ControladorRegistro(),TAG_FRG_REG_12);
         ft.addToBackStack(TAG_FRG_REG_12);
         ft.commit();
+
+    }
+
+    @Override
+    public void onRecordarClick() {
+        DialogRecuContra d = new DialogRecuContra();
+        d.show(getSupportFragmentManager(),TAG_REC_DIA);
 
     }
 
@@ -285,6 +296,14 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
         Fragment reg = fm.findFragmentByTag(TAG_FRG_REG_12);
         ft.remove(reg);
         ft.commit();
+
+    }
+
+    @Override
+    public void onDialogoRecuClick(String emailouser) {
+        DialogoRevisarCorreo d = new DialogoRevisarCorreo();
+        d.show(getSupportFragmentManager(),TAG_REV_CONTRA);
+
 
     }
 }

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.juanfe.withapi.R;
 
@@ -20,6 +21,7 @@ public class ControladoraLogin extends Fragment implements View.OnClickListener 
     Button login,singup;
     Context context;
     OnLoginListener onLoginListener;
+    LinearLayout recuperar;
 
     @Nullable
     @Override
@@ -29,6 +31,8 @@ public class ControladoraLogin extends Fragment implements View.OnClickListener 
         pass = v.findViewById(R.id.pass);
         login = v.findViewById(R.id.login);
         singup = v.findViewById(R.id.singup);
+        recuperar = v.findViewById(R.id.recuperar);
+
         acciones();
 
         return v;
@@ -37,6 +41,7 @@ public class ControladoraLogin extends Fragment implements View.OnClickListener 
     private void acciones() {
         login.setOnClickListener(this);
         singup.setOnClickListener(this);
+        recuperar.setOnClickListener(this);
     }
 
     @Override
@@ -60,6 +65,9 @@ public class ControladoraLogin extends Fragment implements View.OnClickListener 
         }else if (v.getId()==R.id.singup){
             onLoginListener.onRegisterClick();
 
+        }else if (v.getId()==R.id.recuperar){
+            onLoginListener.onRecordarClick();
+
         }
 
     }
@@ -67,5 +75,6 @@ public class ControladoraLogin extends Fragment implements View.OnClickListener 
     public interface OnLoginListener{
         void onLoginClick(String user,String pass);
         void onRegisterClick();
+        void onRecordarClick();
     }
 }

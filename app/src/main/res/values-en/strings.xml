@@ -38,4 +38,7 @@
     <string name="todook">All is okey</string>
     <string name="todoko">Algo ha salido mal, mira el log</string>
     <string name="faqs">     FAQS</string>
+    <string name="recuperarcontra">Forgot your password? Click here</string>
+    <string name="miraremail">Check your email to reset the password</string>
+
 </resources>
