@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +25,7 @@ import com.android.volley.toolbox.Volley;
 import com.juanfe.withapi.adaptadores.AdaptadorBonos;
 import com.juanfe.withapi.adaptadores.AdaptadorRMisArchivos;
 import com.juanfe.withapi.controladoras.ControladoraBonos;
+import com.juanfe.withapi.controladoras.ControladoraFAQS;
 import com.juanfe.withapi.controladoras.ControladoraMisArchivos;
 import com.juanfe.withapi.controladoras.ControladoraSettings;
 import com.juanfe.withapi.controladoras.ControladoraSubida;
@@ -34,6 +36,14 @@ import com.juanfe.withapi.dialogos.DialogoSettingsGuardar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,11 +60,13 @@ import static com.juanfe.withapi.utils.Constantes.CLIENTSECRET;
 import static com.juanfe.withapi.utils.Constantes.DOMINIO;
 
 public class UserActivity extends AppCompatActivity implements AdaptadorRMisArchivos.OnReciclerListener,
-        ControladoraSubida.OnUpdateListener, ControladoraSettings.OnSettingsListener, AdaptadorBonos.OnCheckedListener {
+        ControladoraSubida.OnUpdateListener, ControladoraSettings.OnSettingsListener, AdaptadorBonos.OnCheckedListener,
+        ControladoraFAQS.OnFAQSListener {
 
 
     static final String TAG_MIAR = "mis archivos";
     static final String TAG_SETT = "ajustes";
+    static final String TAG_FAQS = "faqs";
     static final int PICKFILE_REQUEST_CODE = 1;
     static final String TAG_DIA_SET_SAVE = "dialogo guardar de settings";
     private static final String TAG_WEB = "Vista Web";
@@ -167,6 +179,7 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
     @Override
     public void onClickRecycler(String nombre) {
         //TODO hacer llamada descarga de archico mas adelante
+        downloadFile("", new File(nombre));
 
     }
     //viene de controladorasubida
@@ -406,5 +419,40 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
             Toast.makeText(getApplicationContext(),R.string.todoko,Toast.LENGTH_SHORT).show();
             Log.v("error de bonos","");
         }
+    }
+
+    private static void downloadFile(String url, File outputFile) {
+        try {
+            URL u = new URL(url);
+            URLConnection conn = u.openConnection();
+            int contentLength = conn.getContentLength();
+
+            DataInputStream stream = new DataInputStream(u.openStream());
+
+            byte[] buffer = new byte[contentLength];
+            stream.readFully(buffer);
+            stream.close();
+
+            DataOutputStream fos = new DataOutputStream(new FileOutputStream(outputFile));
+            fos.write(buffer);
+            fos.flush();
+            fos.close();
+        } catch(FileNotFoundException e) {
+            return; // swallow a 404
+        } catch (IOException e) {
+            return; // swallow a 404
+        }
+    }
+    //viene de controladora faqs y hace su funcion al pulsar el boton
+    //vuelve hacia atras
+    @Override
+    public void onFQASClick() {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft  =fm.beginTransaction();
+        Fragment f = fm.findFragmentByTag(TAG_FAQS);
+        int pila =  fm.getBackStackEntryCount();
+        ft.remove(f);
+        ft.commit();
+
     }
 }

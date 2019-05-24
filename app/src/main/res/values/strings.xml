@@ -36,4 +36,5 @@
     <string name="webview">Versión web</string>
     <string name="todook">Todo ha salido bien</string>
     <string name="todoko">Algo ha salido mal, mira el log</string>
+    <string name="faqs">FAQS</string>
 </resources>
