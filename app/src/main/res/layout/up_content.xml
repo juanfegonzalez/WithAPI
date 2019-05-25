@@ -1,65 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="10sp"
     android:layout_marginTop="50sp"
     android:layout_marginEnd="10sp"
-    android:layout_marginStart="10sp"
     android:layout_marginBottom="30sp"
-    android:layout_height="match_parent"
     android:background="@android:color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10sp"
         android:layout_marginTop="50sp"
         android:layout_marginEnd="10sp"
-        android:layout_marginStart="10sp"
         android:layout_marginBottom="50sp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_vertical|center_horizontal">
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="230sp"
             android:layout_height="50sp"
+            android:layout_marginBottom="120sp"
+            android:background="@drawable/fondo"
             android:text="@string/titulo_subida"
             android:textAlignment="center"
             android:textColor="@android:color/black"
-            android:textSize="30sp"
-            android:background="@drawable/fondo"
-            android:layout_marginBottom="120sp"/>
+            android:textSize="30sp" />
+
         <Spinner
-            android:layout_width="230sp"
-            android:layout_height="50sp"
             android:id="@+id/tipoAr"
-            android:layout_marginBottom="10sp"/>
-        <EditText
             android:layout_width="230sp"
             android:layout_height="50sp"
+            android:layout_marginBottom="10sp" />
+
+        <EditText
+            android:id="@+id/tit"
+            android:layout_width="230sp"
+            android:layout_height="50sp"
+            android:background="@drawable/fondob"
             android:hint="@string/titulo_up"
             android:inputType="textUri"
-            android:textAlignment="center"
-            android:background="@drawable/fondob"
-            android:id="@+id/tit"/>
+            android:textAlignment="center" />
 
         <TextView
+            android:id="@+id/ruta"
             android:layout_width="230sp"
             android:layout_height="50sp"
-            android:text="@string/ruta"
-            android:textSize="30sp"
-            android:textAlignment="center"
             android:background="@drawable/fondo"
-            android:id="@+id/ruta"/>
+            android:text="@string/ruta"
+            android:textAlignment="center"
+            android:textSize="30sp" />
 
         <Button
+            android:id="@+id/buscar"
             android:layout_width="230sp"
             android:layout_height="50sp"
-            android:text="@string/search"
-            android:id="@+id/buscar"/>
+            android:text="@string/search" />
+
         <Button
+            android:id="@+id/subir"
             android:layout_width="230sp"
             android:layout_height="50sp"
-            android:text="@string/upfile"
-            android:id="@+id/subir"/>
+            android:text="@string/upfile" />
 
     </LinearLayout>
 </LinearLayout>

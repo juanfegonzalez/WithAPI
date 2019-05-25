@@ -13,34 +13,34 @@
         android:weightSum="1">
 
         <ImageButton
+            android:id="@+id/onback"
             android:layout_width="70sp"
             android:layout_height="match_parent"
             android:background="@android:color/darker_gray"
             android:scaleType="centerCrop"
-            android:id="@+id/onback"
             android:src="@drawable/flecha" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textAlignment="center"
             android:text="@string/FAQS"
+            android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="40sp" />
 
     </LinearLayout>
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.9">
 
         <TextView
+            android:id="@+id/textofaqs"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/textofaqs"/>
+            android:layout_height="match_parent" />
 
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <!-- podria poner el web view con la vista unica de la url de los faqs-->
 

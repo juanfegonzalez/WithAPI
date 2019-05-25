@@ -1,33 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_margin="40sp"
-    android:orientation="vertical"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/card"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="40sp"
+    android:orientation="vertical">
 
     <TextView
+        android:id="@+id/precio"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/precio"/>
+        android:layout_height="wrap_content" />
+
     <TextView
 
+        android:id="@+id/cantidad"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/cantidad"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/titulo"/>
+        android:layout_height="wrap_content" />
 
     <TextView
+        android:id="@+id/titulo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/descripcion"/>
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/descripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 
-
-
-
-
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

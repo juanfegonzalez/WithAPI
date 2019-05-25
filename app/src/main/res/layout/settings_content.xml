@@ -7,70 +7,73 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_marginTop="40sp"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="40sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40sp"
+        android:layout_marginTop="40sp"
         android:layout_marginEnd="40sp"
         android:layout_marginBottom="30sp"
-        android:text="@string/settings" />
+        android:text="@string/settings"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="40sp" />
 
 
     <EditText
+        android:id="@+id/nomset"
         android:layout_width="match_parent"
-        android:layout_marginTop="40sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40sp"
+        android:layout_marginTop="40sp"
         android:layout_marginEnd="40sp"
-        android:id="@+id/nomset"
         android:text="@string/Regnom" />
 
     <EditText
+        android:id="@+id/apelset"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40sp"
         android:layout_marginEnd="40sp"
-        android:id="@+id/apelset"
         android:text="@string/RegApe" />
 
     <EditText
+        android:id="@+id/corset"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40sp"
         android:layout_marginEnd="40sp"
-        android:id="@+id/corset"
         android:text="@string/Regcor" />
 
     <EditText
+        android:id="@+id/passset"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40sp"
         android:layout_marginEnd="40sp"
-        android:id="@+id/passset"
         android:text="@string/passnew" />
 
     <EditText
+        android:id="@+id/pass2set"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40sp"
         android:layout_marginEnd="40sp"
-        android:id="@+id/pass2set"
         android:text="@string/pass2" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal">
+
         <Button
+            android:id="@+id/guardar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/save"
-            android:id="@+id/guardar"/>
+            android:text="@string/save" />
+
         <Button
+            android:id="@+id/verificar"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/verificar"/>
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 

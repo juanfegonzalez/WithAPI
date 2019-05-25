@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:orientation="vertical">
 
     <EditText
         android:id="@+id/editUser"
@@ -34,8 +34,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/Regcor"
-        android:text="sap@sap.com"
         android:inputType="textEmailAddress"
+        android:text="sap@sap.com"
         android:textAlignment="center" />
 
     <EditText
@@ -43,8 +43,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/Regcor2"
-        android:text="sap@sap.com"
         android:inputType="textEmailAddress"
+        android:text="sap@sap.com"
         android:textAlignment="center" />
 
     <EditText
@@ -52,8 +52,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/pass"
-        android:text="sap"
         android:inputType="textPassword"
+        android:text="sap"
         android:textAlignment="center" />
 
     <EditText
@@ -61,8 +61,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/pass2"
-        android:text="sap"
         android:inputType="textPassword"
+        android:text="sap"
         android:textAlignment="center" />
 
     <Button
