@@ -58,7 +58,7 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
     final static String TAG_SWAP_LOG_T = "token";
     final static String TAG_SWAP_LOG_I = "id";
 
-    String usuario, password,pass,nombre, apellido,email;
+    String usuario, password,pass,nombre, apellido,email,token;
     Boolean ok;
     Intent i;
     int id;
@@ -246,7 +246,7 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
         Log.v("test",response.toString());
 
         if (ok){
-            String token = response.getString("access_token");
+            token = response.getString("access_token");
 
 
             /*JSONObject sal = response.getJSONObject("salida");

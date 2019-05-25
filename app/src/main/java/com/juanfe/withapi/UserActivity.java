@@ -102,7 +102,7 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
     private void fragmentMisArchivos() {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.add(u_sitio.getId(), ControladoraMisArchivos.newInstance(user,pass),TAG_MIAR);
+        ft.add(u_sitio.getId(), ControladoraMisArchivos.newInstance(user,pass,token,id),TAG_MIAR);
         ft.addToBackStack(TAG_MIAR);
         ft.commit();
 
@@ -124,7 +124,7 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
                         break;
 
                     case R.id.misarch:
-                        ft.add(u_sitio.getId(), ControladoraMisArchivos.newInstance(user,pass),TAG_MIAR);
+                        ft.add(u_sitio.getId(), ControladoraMisArchivos.newInstance(user,pass,token,id),TAG_MIAR);
                         ft.addToBackStack(TAG_MIAR);
                         break;
 
