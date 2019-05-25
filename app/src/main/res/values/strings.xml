@@ -39,4 +39,5 @@
     <string name="faqs">FAQS</string>
     <string name="recuperarcontra">¿Has olvidado tu contraseña? pulsa aquí</string>
     <string name="miraremail">Revisa tu correo para restablecer tu contraseña</string>
+    <string name="choose">"Tienes que elegir un fichero"</string>
 </resources>

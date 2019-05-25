@@ -40,5 +40,6 @@
     <string name="faqs">     FAQS</string>
     <string name="recuperarcontra">Forgot your password? Click here</string>
     <string name="miraremail">Check your email to reset the password</string>
+    <string name="choose">Tienes que elegir un fichero</string>
 
 </resources>

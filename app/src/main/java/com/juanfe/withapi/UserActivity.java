@@ -71,6 +71,7 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
     static final String TAG_DIA_SET_SAVE = "dialogo guardar de settings";
     private static final String TAG_WEB = "Vista Web";
     private static final String TAG_BON = "bonos a comprar";
+    private static final String TAG_UP = "subida" ;
     FrameLayout u_sitio;
     String user,pass,nombre, apellido,email,token;
     int id;
@@ -112,6 +113,8 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
         cargarLetra();
 
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+
+
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 FragmentManager fm = getSupportFragmentManager();
@@ -119,8 +122,8 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
                 switch (menuItem.getItemId()){
 
                     case R.id.update:
-                        ft.add(u_sitio.getId(), ControladoraSubida.newInstance(user,pass),TAG_MIAR);
-                        ft.addToBackStack(TAG_MIAR);
+                        ft.add(u_sitio.getId(), ControladoraSubida.newInstance(user,pass),TAG_UP);
+                        ft.addToBackStack(TAG_UP);
                         break;
 
                     case R.id.misarch:
@@ -206,12 +209,17 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
         super.onActivityResult(requestCode, resultCode, data);
 
         Log.v("test",(data.getData().toString()));
+        if (data.getData().toString()==null){
+            Toast.makeText(getApplicationContext(),"Tienes que elegir un fichero",Toast.LENGTH_SHORT).show();
+        }
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         //ft.add(u_sitio.getId(), ControladoraMisArchivos.newInstance(user,pass),TAG_MIAR);
-        ControladoraSubida cs = (ControladoraSubida) fm.findFragmentByTag(TAG_MIAR);
+        Fragment f =   fm.findFragmentByTag(TAG_UP);
+        if (f!=null) {
 
-        cs.setTextRuta(data.getData().getPath());
+            ((ControladoraSubida) f).setTextRuta(data.getData().getPath());
+        }
 
         ft.commit();
 

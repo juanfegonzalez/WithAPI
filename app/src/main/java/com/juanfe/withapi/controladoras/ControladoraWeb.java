@@ -51,21 +51,24 @@ public class ControladoraWeb extends Fragment {
         v_web = v.findViewById(R.id.web);
         WebSettings webSettings = v_web.getSettings();
         webSettings.setJavaScriptEnabled(true);
+
         v_web.loadUrl(Constantes.OCR);
         v_web.getSettings().setDomStorageEnabled(true);
         v_web.getSettings().setAllowFileAccess(true);
         v_web.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         v_web.clearCache(false);
+        v_web.setWebViewClient(new MyClient());
+        v_web.setWebChromeClient(new GoogleClient());
 
         v_web.setWebChromeClient(new WebChromeClient(){
             //Implementacion de Canvas de archivos
             public void openFileChooser(ValueCallback<Uri> uploadMsg, String accepType){
                 mUploadMessage = uploadMsg;
-                openImageChooser();
+                openPDFChooser();
             }
             public boolean onShowFileChooser(WebView mWebView, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams filechooserParams){
                 mUploadMessages = filePathCallback;
-                openImageChooser();
+                openPDFChooser();
                 return true;
             }
             public void openFileChooser(ValueCallback<Uri> uploadMsg){
@@ -113,7 +116,7 @@ public class ControladoraWeb extends Fragment {
     }
 
 
-    private void openImageChooser(){
+    private void openPDFChooser(){
         try{
             File imageStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "FolderName");
             if (!imageStorageDir.exists()){
@@ -125,8 +128,8 @@ public class ControladoraWeb extends Fragment {
             captureIntent.putExtra(MediaStore.EXTRA_OUTPUT, mCapturedImageUri);
             Intent i = new Intent(Intent.ACTION_GET_CONTENT);
             i.addCategory(Intent.CATEGORY_OPENABLE);
-            i.setType("image/*");
-            Intent chooserIntent = Intent.createChooser(i, "Image Chooser");
+            i.setType("*/*");
+            Intent chooserIntent = Intent.createChooser(i, "*/*");
             chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Parcelable[]{captureIntent});
             startActivityForResult(chooserIntent, FILECHOOSER_RESULCODE);
         } catch (Exception e){
