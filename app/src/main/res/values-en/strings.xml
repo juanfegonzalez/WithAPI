@@ -3,7 +3,7 @@
     <string name="app_name">WithAPI</string>
     <string name="user">User</string>
     <string name="pass">Password</string>
-    <string name="passnew">Nueva Contraseña</string>
+    <string name="passnew">New password</string>
     <string name="pass2">Repeat password</string>
     <string name="Log_in">Log in</string>
     <string name="Reg">Sign up</string>
@@ -15,7 +15,7 @@
     <string name="Corrvacio">Email or validation is empty please fill it out</string>
     <string name="passvacio">Password or validation is empty,please fill it out</string>
     <string name="falloReg">The user or  password is incorrect or the user is exist</string>
-    <string name="okreg">Todo ha salido bien, you are sign up</string>
+    <string name="okreg">We went well, you are sign up</string>
     <string name="loginSi">Login OK</string>
     <string name="loginNo">We have an issue, please contact with your systems administration</string>
     <string name="Subirarchivo">Update file</string>
@@ -29,17 +29,20 @@
     <string name="titulo_subida">Update File</string>
     <string name="Bonos">Bonos</string>
     <string name="nombrearchivo">Bonos</string>
-    <string name="titulo_up">Name of File </string>
+    <string name="titulo_up">File name</string>
     <string name="ruta">Path</string>
-    <string name="save">Guardar</string>
-    <string name="contra">Contratar</string>
+    <string name="save">Save</string>
+    <string name="contra">Contract</string>
     <string name="guardar">Saved successfully</string>
     <string name="webview">Web version</string>
     <string name="todook">All is okey</string>
-    <string name="todoko">Algo ha salido mal, mira el log</string>
-    <string name="faqs">     FAQS</string>
+    <string name="todoko">Something has gone wrong, mira el log</string>
+    <string name="faqs">FAQS</string>
     <string name="recuperarcontra">Forgot your password? Click here</string>
     <string name="miraremail">Check your email to reset the password</string>
-    <string name="choose">Tienes que elegir un fichero</string>
-
+    <string name="choose">You must choose a File</string>
+    <string name="hinreccontra">Put your email here</string>
+    <string name="recucontra">Insert your email</string>
+    <string name="logout">Log in</string>
+    <string name="services">Services</string>
 </resources>

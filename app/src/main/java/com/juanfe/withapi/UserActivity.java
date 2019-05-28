@@ -1,5 +1,6 @@
 package com.juanfe.withapi;
 
+import android.content.Context;
 import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,6 +34,11 @@ import com.juanfe.withapi.controladoras.ControladoraWeb;
 import com.juanfe.withapi.dialogos.DialogoSettingsGuardar;
 
 
+import net.gotev.uploadservice.MultipartUploadRequest;
+import net.gotev.uploadservice.ServerResponse;
+import net.gotev.uploadservice.UploadInfo;
+import net.gotev.uploadservice.UploadStatusDelegate;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -46,6 +52,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import static com.juanfe.withapi.FragmentActivity.TAG_SWAP_LOG_A;
 import static com.juanfe.withapi.FragmentActivity.TAG_SWAP_LOG_E;
@@ -72,6 +79,7 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
     private static final String TAG_WEB = "Vista Web";
     private static final String TAG_BON = "bonos a comprar";
     private static final String TAG_UP = "subida" ;
+    private static final String URL_SUBIRPICTURE = "subir archivo";
     FrameLayout u_sitio;
     String user,pass,nombre, apellido,email,token;
     int id;
@@ -124,11 +132,14 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
                     case R.id.update:
                         ft.add(u_sitio.getId(), ControladoraSubida.newInstance(user,pass),TAG_UP);
                         ft.addToBackStack(TAG_UP);
+                        ft.commit();
+                        //nav.
                         break;
 
                     case R.id.misarch:
                         ft.add(u_sitio.getId(), ControladoraMisArchivos.newInstance(user,pass,token,id),TAG_MIAR);
                         ft.addToBackStack(TAG_MIAR);
+                        ft.commit();
                         break;
 
                     case R.id.who: break;
@@ -138,22 +149,29 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
                     case R.id.bonos:
                         ft.add(u_sitio.getId(), ControladoraBonos.newInstance(user,pass),TAG_BON);
                         ft.addToBackStack(TAG_BON);
+                        ft.commit();
                         break;
 
                     case R.id.config:
                         ft.add(u_sitio.getId(), ControladoraSettings.newInstance(user,pass),TAG_SETT);
                         ft.addToBackStack(TAG_SETT);
+                        ft.commit();
 
                         break;
 
                     case R.id.menuweb:
                         ft.add(u_sitio.getId(),new ControladoraWeb(),TAG_WEB);
                         ft.addToBackStack(TAG_WEB);
+                        ft.commit();
 
+                        break;
+                    case R.id.logout:
+                        Intent i = new Intent(getApplicationContext(),FragmentActivity.class);
+                        startActivity(i);
+                        finish();
                         break;
                         
                 }
-                ft.commit();
                 return true;
             }
         });
@@ -179,14 +197,13 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
     @Override
     public void onClickRecycler(String nombre) {
         //TODO hacer llamada descarga de archico mas adelante
-        downloadFile("", new File(nombre));
+        //downloadFile("", new File(nombre));
 
     }
     //viene de controladorasubida
     @Override
-    public void onUpdateClick(String tipo,String ruta) {
-
-
+    public void onUpdateClick(String tipo,String ruta,String nombre) {
+       // upFile(tipo,ruta,nombre);
     }
     //viene de controladorasubida
     @Override
@@ -461,4 +478,50 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
         ft.commit();
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        FragmentManager fm = getSupportFragmentManager();
+        if (fm.getBackStackEntryCount()<1){
+            finish();
+        }
+    }
+
+   /* public void upFile(String ruta,String nombre,String tipo){
+        try {
+
+            String uploadId = UUID.randomUUID().toString();
+            new MultipartUploadRequest(getApplicationContext(), uploadId, URL_SUBIRPICTURE).addFileToUpload(ruta, nombre)
+                    .addParameter("ruta", ruta).addParameter("nombre",nombre).addParameter("tipo",tipo)
+                    .setMaxRetries(2).setDelegate(new UploadStatusDelegate() {
+                @Override
+                public void onProgress(Context context, UploadInfo uploadInfo) {
+
+                }
+
+                @Override
+                public void onError(Context context, UploadInfo uploadInfo, ServerResponse serverResponse, Exception exception) {
+                    Toast.makeText(context,uploadInfo.toString()+":"+serverResponse.toString()+";"+exception.getMessage(),Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onCompleted(Context context, UploadInfo uploadInfo, ServerResponse serverResponse) {
+                    Toast.makeText(context,uploadInfo.toString()+":"+serverResponse.toString(),Toast.LENGTH_SHORT).show();
+
+                }
+
+                @Override
+                public void onCancelled(Context context, UploadInfo uploadInfo) {
+                    Toast.makeText(context,uploadInfo.toString(),Toast.LENGTH_SHORT).show();
+
+                }
+            }).startUpload();
+
+
+
+        } catch (Exception exc) {
+            System.out.println(exc.getMessage()+" "+exc.getLocalizedMessage());
+        }
+    }*/
 }

@@ -61,7 +61,7 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
     String usuario, password,pass,nombre, apellido,email,token;
     Boolean ok;
     Intent i;
-    int id;
+    int id,fin;
 
 
 
@@ -120,7 +120,7 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
     //viene de controladora login para la autenticacion en 2 pasos
     private void enviarJson(String user, String pass) {
         String API = DOMINIO + "usuarios/login/";
-       // Log.v("test",API);
+        Log.v("test",API);
 
         //String API = "http://192.168.43.157:8001/usuarios/login/";
         HashMap<String, String> hm = new HashMap();
@@ -271,6 +271,7 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
             },2000);
             dialogoLogin.dismiss();
             startActivity(i);
+            finish();
 
 
         }else {
@@ -284,9 +285,13 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
     public void onBackPressed() {
         super.onBackPressed();
         FragmentManager fm = getSupportFragmentManager();
-        if (fm.getBackStackEntryCount() < 1) {
-            finish();
+        if (fm.getBackStackEntryCount() == 1) {
+
+            Toast.makeText(getApplicationContext(),"pulsa de nuevo para salir",Toast.LENGTH_LONG).show();
+        }else if (fm.getBackStackEntryCount() == 0){
+           finish();
         }
+        Log.v("test", String.valueOf(fm.getBackStackEntryCount()));
     }
     //viene de dialogo registro
     @Override

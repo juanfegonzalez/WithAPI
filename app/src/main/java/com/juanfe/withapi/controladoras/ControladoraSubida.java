@@ -2,14 +2,17 @@ package com.juanfe.withapi.controladoras;
 
 import android.content.Context;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -26,6 +29,7 @@ public class ControladoraSubida extends Fragment implements View.OnClickListener
     Button buscar, subir;
     TextView ruta;
     Spinner tipo;
+    EditText titulo;
 
     OnUpdateListener oul;
 
@@ -33,7 +37,7 @@ public class ControladoraSubida extends Fragment implements View.OnClickListener
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v =inflater.inflate(R.layout.up_content,container,false);
+        View v = inflater.inflate(R.layout.up_content, container, false);
         instancias(v);
         acciones();
         return v;
@@ -49,18 +53,19 @@ public class ControladoraSubida extends Fragment implements View.OnClickListener
         subir = v.findViewById(R.id.subir);
         ruta = v.findViewById(R.id.ruta);
         tipo = v.findViewById(R.id.tipoAr);
+        titulo = v.findViewById(R.id.tit);
         rellenarTipos();
 
     }
 
     private void rellenarTipos() {
-        String[] opciones  = {"B","T","TB"};
-        ArrayAdapter<CharSequence> adaptadorSpinner = new ArrayAdapter<CharSequence>(context, android.R.layout.simple_spinner_item,opciones);
+        String[] opciones = {"B", "T", "TB"};
+        ArrayAdapter<CharSequence> adaptadorSpinner = new ArrayAdapter<CharSequence>(context, android.R.layout.simple_spinner_item, opciones);
         adaptadorSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tipo.setAdapter(adaptadorSpinner);
     }
 
-    public void setTextRuta(String ruta){
+    public void setTextRuta(String ruta) {
 
         this.ruta.setText(ruta);
     }
@@ -69,9 +74,9 @@ public class ControladoraSubida extends Fragment implements View.OnClickListener
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.context=context;
+        this.context = context;
         oul = (OnUpdateListener) context;
-        if (getArguments()!=null){
+        if (getArguments() != null) {
             user = getArguments().getString(USER_TAG_UP);
             pass = getArguments().getString(PASS_TAG_UP);
         }
@@ -90,18 +95,25 @@ public class ControladoraSubida extends Fragment implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.buscar:
-                oul.onSearchClick();break;
+                oul.onSearchClick();
+                break;
             case R.id.subir:
-                oul.onUpdateClick(tipo.getSelectedItem().toString(),ruta.getText().toString());
+                if (!(titulo.getText().toString().isEmpty())) {
+                    oul.onUpdateClick(tipo.getSelectedItem().toString(), ruta.getText().toString(), titulo.getText().toString());
+                }else {
+
+                }
+
                 break;
         }
 
     }
 
-    public interface OnUpdateListener{
-        void onUpdateClick(String tipo,String archivo);
+    public interface OnUpdateListener {
+        void onUpdateClick(String tipo, String archivo, String nombre);
+
         void onSearchClick();//aqui va el intent hacia la busqueda en la memoria
     }
 }

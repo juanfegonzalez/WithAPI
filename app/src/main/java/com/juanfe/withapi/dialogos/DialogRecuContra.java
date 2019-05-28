@@ -39,10 +39,7 @@ public class DialogRecuContra extends DialogFragment {
                 onDialogoRecuListener.onDialogoRecuClick(edit.getText().toString());
             }
         });
-
-
-
-
+        b.setTitle(R.string.recucontra);
         return b.show();
     }
 

@@ -40,4 +40,8 @@
     <string name="recuperarcontra">¿Has olvidado tu contraseña? pulsa aquí</string>
     <string name="miraremail">Revisa tu correo para restablecer tu contraseña</string>
     <string name="choose">"Tienes que elegir un fichero"</string>
+    <string name="hinreccontra">introducie tu email</string>
+    <string name="recucontra">Recuperación de contraseña</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="services">Servicios</string>
 </resources>
