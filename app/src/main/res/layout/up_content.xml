@@ -26,7 +26,8 @@
             android:text="@string/titulo_subida"
             android:textAlignment="center"
             android:textColor="@android:color/black"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:id="@+id/titulo"/>
 
         <Spinner
             android:id="@+id/tipoAr"

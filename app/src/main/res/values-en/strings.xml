@@ -44,5 +44,6 @@
     <string name="hinreccontra">Put your email here</string>
     <string name="recucontra">Insert your email</string>
     <string name="logout">Log in</string>
-    <string name="services">Services</string>
+    <string name="servicess">Services</string>
+    <string name="Ecommerse">E-commerse</string>
 </resources>

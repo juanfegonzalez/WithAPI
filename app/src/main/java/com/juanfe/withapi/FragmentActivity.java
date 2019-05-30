@@ -1,8 +1,13 @@
 package com.juanfe.withapi;
 
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Handler;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -25,6 +30,7 @@ import com.juanfe.withapi.dialogos.DialogRecuContra;
 import com.juanfe.withapi.dialogos.DialogoLogin;
 import com.juanfe.withapi.dialogos.DialogoRegSi;
 import com.juanfe.withapi.dialogos.DialogoRevisarCorreo;
+import com.juanfe.withapi.utils.WithAPI;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -311,4 +317,9 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
 
 
     }
+
+
+
+
+
 }

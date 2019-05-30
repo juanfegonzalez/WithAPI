@@ -1,38 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="@string/services">
+    <item android:title="@string/servicess">
         <menu>
-    <item
-        android:id="@+id/update"
-        android:title="@string/Subirarchivo" android:icon="@android:drawable/ic_menu_set_as" />
-    <item
-        android:id="@+id/misarch"
-        android:title="@string/Misarchivos" android:icon="@android:drawable/ic_menu_recent_history"/>
-    <item
-        android:id="@+id/who"
-        android:title="@string/WhoAre" android:icon="@android:drawable/ic_input_get" />
-    <item
-        android:id="@+id/bonos"
-        android:title="@string/Bonos" android:icon="@android:drawable/ic_dialog_email" />
-    <item
-        android:id="@+id/faqs"
-        android:title="@string/FAQS" android:icon="@android:drawable/ic_menu_help" />
+            <item
+                android:id="@+id/update"
+                android:icon="@android:drawable/ic_menu_set_as"
+                android:title="@string/Subirarchivo" />
+            <item
+                android:id="@+id/misarch"
+                android:icon="@android:drawable/ic_menu_recent_history"
+                android:title="@string/Misarchivos" />
+            <item
+                android:id="@+id/ecomerse"
+                android:icon="@android:drawable/ic_menu_compass"
+                android:title="@string/Ecommerse" />
+            <item
+                android:id="@+id/who"
+                android:icon="@android:drawable/ic_input_get"
+                android:title="@string/WhoAre" />
+            <item
+                android:id="@+id/bonos"
+                android:icon="@android:drawable/ic_dialog_email"
+                android:title="@string/Bonos" />
+            <item
+                android:id="@+id/faqs"
+                android:icon="@android:drawable/ic_menu_help"
+                android:title="@string/FAQS" />
         </menu>
     </item>
     <item android:title="@string/webview">
         <menu>
-            <item android:title="@string/webview"
-                android:id="@+id/menuweb" android:icon="@android:drawable/ic_dialog_info">
+            <item
+                android:id="@+id/menuweb"
+                android:icon="@android:drawable/ic_dialog_info"
+                android:title="@string/webview">
 
             </item>
         </menu>
     </item>
     <item android:title="@string/settings">
         <menu>
-        <item
-            android:id="@+id/config"
-            android:title="@string/settings" android:icon="@android:drawable/ic_menu_preferences" />
-            <item android:id="@+id/logout" android:title="@string/logout" android:icon="@android:drawable/ic_menu_close_clear_cancel"/>
+            <item
+                android:id="@+id/config"
+                android:icon="@android:drawable/ic_menu_preferences"
+                android:title="@string/settings" />
+            <item
+                android:id="@+id/logout"
+                android:icon="@android:drawable/ic_menu_close_clear_cancel"
+                android:title="@string/logout" />
         </menu>
 
     </item>

@@ -102,8 +102,6 @@ public class ControladoraSubida extends Fragment implements View.OnClickListener
             case R.id.subir:
                 if (!(titulo.getText().toString().isEmpty())) {
                     oul.onUpdateClick(tipo.getSelectedItem().toString(), ruta.getText().toString(), titulo.getText().toString());
-                }else {
-
                 }
 
                 break;

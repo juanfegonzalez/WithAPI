@@ -43,5 +43,6 @@
     <string name="hinreccontra">introducie tu email</string>
     <string name="recucontra">Recuperación de contraseña</string>
     <string name="logout">Cerrar sesión</string>
-    <string name="services">Servicios</string>
+    <string name="servicess">Servicios</string>
+    <string name="Ecommerse">E-commerse</string>
 </resources>
