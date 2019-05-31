@@ -2,26 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Splash2Activity">
 
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_marginTop="200sp"
         android:layout_width="match_parent"
         android:layout_height="308dp"
+        android:layout_marginTop="200sp"
         app:srcCompat="@drawable/logo"
         tools:layout_editor_absoluteX="-10dp" />
 
     <ProgressBar
-        android:layout_gravity="center"
         android:id="@+id/progressBar3"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         tools:layout_editor_absoluteX="181dp"
         tools:layout_editor_absoluteY="503dp" />
 </LinearLayout>

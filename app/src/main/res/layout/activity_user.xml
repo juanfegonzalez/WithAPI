@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawerUser"
-    android:backgroundTint="@color/cardview_light_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@color/cardview_light_background"
     tools:context=".UserActivity">
 
     <include layout="@layout/user_content" />
