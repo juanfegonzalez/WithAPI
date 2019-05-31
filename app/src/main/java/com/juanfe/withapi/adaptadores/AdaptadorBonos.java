@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.juanfe.withapi.R;
@@ -38,8 +39,8 @@ public class AdaptadorBonos extends RecyclerView.Adapter<AdaptadorBonos.HolderB>
     public void onBindViewHolder(@NonNull HolderB holderB, int i) {
 
         final Bono b = (Bono) lista.get(i);
-        holderB.getCantidad().setText(b.getCantidad());
-        holderB.getPrecio().setText(b.getPrecio());
+        holderB.getCantidad().setText(String.valueOf(b.getCantidad()));
+        holderB.getPrecio().setText(String.valueOf(b.getPrecio()));
         holderB.getDescripcion().setText(b.getDescripcion());
         holderB.getTitulo().setText(b.getNombre());
         holderB.getLinear().setOnClickListener(new View.OnClickListener() {

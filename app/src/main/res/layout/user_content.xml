@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/sitiouser"
+    android:background="@drawable/logo"
+    android:backgroundTintMode="src_in"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" /><!--crear boton de cerrar sesion-->
+    android:layout_height="match_parent" />

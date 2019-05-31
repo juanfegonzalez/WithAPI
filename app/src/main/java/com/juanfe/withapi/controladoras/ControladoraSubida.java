@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.juanfe.withapi.R;
 
@@ -102,6 +103,8 @@ public class ControladoraSubida extends Fragment implements View.OnClickListener
             case R.id.subir:
                 if (!(titulo.getText().toString().isEmpty())) {
                     oul.onUpdateClick(tipo.getSelectedItem().toString(), ruta.getText().toString(), titulo.getText().toString());
+                }else {
+                    Toast.makeText(context,R.string.nonombre,Toast.LENGTH_SHORT).show();
                 }
 
                 break;

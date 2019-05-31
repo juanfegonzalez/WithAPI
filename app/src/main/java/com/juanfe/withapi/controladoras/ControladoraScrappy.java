@@ -18,8 +18,8 @@ import com.juanfe.withapi.R;
 public class ControladoraScrappy extends Fragment {
 
     Context context;
-    TextView titulo;
-    EditText ruta,nombre;
+    TextView ruta,titulo;
+    EditText nombre;
     Button buscar, subir;
     OnScrappyListener ocl;
 
@@ -63,7 +63,7 @@ public class ControladoraScrappy extends Fragment {
             }
         });
     }
-    public void setTextRuta(String ruta) {
+    public void setTextRutaScrappy(String ruta) {
 
         this.ruta.setText(ruta);
     }

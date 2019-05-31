@@ -3,11 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawerUser"
+    android:backgroundTint="@color/cardview_light_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserActivity">
 
     <include layout="@layout/user_content" />
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation"
@@ -17,5 +19,6 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/header_nav"
         app:menu="@menu/menu_user" />
+
 
 </androidx.drawerlayout.widget.DrawerLayout>

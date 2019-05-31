@@ -50,16 +50,12 @@ public class ControladoraBonos extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.bonos_content,container,false);
-        lista = new ArrayList();
-        enviarJson(user,pass);
+        lista =new ArrayList();
+        enviarJson();
+        Log.v("array", String.valueOf(lista.size()));
         recybonos = v.findViewById(R.id.recyclerBonos);
-        adaptadorBonos = new AdaptadorBonos(lista,context);
-        recybonos.setAdapter(adaptadorBonos);
-        recybonos.setLayoutManager(new LinearLayoutManager(context, RecyclerView.VERTICAL,
-                false));
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(context,
-                ((LinearLayoutManager) recybonos.getLayoutManager()).getOrientation());
-        recybonos.addItemDecoration(dividerItemDecoration);
+
+
 
         return v;
     }
@@ -87,7 +83,7 @@ public class ControladoraBonos extends Fragment {
         return fragment;
     }
 
-    private void enviarJson(String user, String pass) {
+    private void enviarJson() {
         String API = DOMINIO + "contenido/bonos/";
         // Log.v("test",API);
 
@@ -139,15 +135,28 @@ public class ControladoraBonos extends Fragment {
     }
 
     private void procesarDatos(JSONObject response) throws JSONException {
-        JSONArray array = response.getJSONArray("salida");
-        for (int i = 0; i< array.length();i++){
-            JSONObject object  = array.getJSONObject(i);
 
-            Bono b = new Bono(object.getString("titulo"),object.getString("id"),
+        JSONArray array = response.getJSONArray("salida");
+        Log.v("testBonos",response.getJSONArray("salida").toString());
+        for (int i = 0; i<= array.length();i++){
+            JSONObject object  = array.getJSONObject(i);
+            Log.v("testBonos",object.get("titulo").toString());
+
+            Bono b = new Bono(object.getString("titulo"),
+                    object.getString("id"),
                     object.getInt("precio"),
                     object.getInt("peticiones"),
                     object.getString("descripcion"));
+
+
             lista.add(b);
+            Log.v("testBonos", String.valueOf(lista.size()));
+            adaptadorBonos = new AdaptadorBonos(lista,context);
+            recybonos.setAdapter(adaptadorBonos);
+            recybonos.setLayoutManager(new LinearLayoutManager(context, RecyclerView.VERTICAL,
+                    false));
+
+
 
 
 

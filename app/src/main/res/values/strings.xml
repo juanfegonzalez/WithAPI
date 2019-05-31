@@ -45,4 +45,7 @@
     <string name="logout">Cerrar sesión</string>
     <string name="servicess">Servicios</string>
     <string name="Ecommerse">E-commerse</string>
+    <string name="asunto">Asunto</string>
+    <string name="contacto">Contacto</string>
+    <string name="nonombre">El nombre no puede estar vacío</string>
 </resources>

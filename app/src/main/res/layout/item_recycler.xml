@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:backgroundTintMode="src_in"
+    android:background="@android:drawable/picture_frame"
     android:orientation="horizontal">
 
     <TextView

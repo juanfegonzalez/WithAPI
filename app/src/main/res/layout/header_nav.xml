@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height="150sp"
     android:orientation="vertical">
 
     <ImageView
@@ -19,6 +19,11 @@
         android:gravity="center"
         android:textAlignment="center"
         android:textSize="30sp" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120sp"
+        android:src="@drawable/logo"/>
 
 
 </FrameLayout>

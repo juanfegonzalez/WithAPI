@@ -8,6 +8,8 @@ import androidx.annotation.Nullable;
 
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -16,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.autofill.AutofillValue;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -83,9 +87,11 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
     private static final String TAG_BON = "bonos a comprar";
     private static final String TAG_UP = "subida";
     private static final String TAG_SCRAP = "scrapping";
+    private static final String TAG_SCRP = "scrappy";
 
 
     FrameLayout u_sitio;
+    DrawerLayout drawer;
     String user, pass, nombre, apellido, email, token;
     int id;
     NavigationView nav;
@@ -128,8 +134,6 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
         cargarLetra();
 
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-
-
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 FragmentManager fm = getSupportFragmentManager();
@@ -140,15 +144,21 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
                         ft.add(u_sitio.getId(), ControladoraSubida.newInstance(user, pass), TAG_UP);
                         ft.addToBackStack(TAG_UP);
                         ft.commit();
-                        //nav.
+                        //closeContextMenu();
+                        //nav.animate().getStartDelay();
                         break;
 
                     case R.id.misarch:
                         ft.add(u_sitio.getId(), ControladoraMisArchivos.newInstance(user, pass, token, id), TAG_MIAR);
                         ft.addToBackStack(TAG_MIAR);
                         ft.commit();
+
                         break;
+
                     case R.id.ecomerse:
+                        ft.add(u_sitio.getId(), new ControladoraScrappy(), TAG_SCRP);
+                        ft.addToBackStack(TAG_SCRP);
+                        ft.commit();
 
                         break;
 
@@ -164,6 +174,7 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
                         ft.add(u_sitio.getId(), ControladoraBonos.newInstance(user, pass), TAG_BON);
                         ft.addToBackStack(TAG_BON);
                         ft.commit();
+
                         break;
 
                     case R.id.config:
@@ -183,9 +194,13 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
                         Intent i = new Intent(getApplicationContext(), FragmentActivity.class);
                         startActivity(i);
                         finish();
+
                         break;
 
                 }
+                //drawer.getvi
+
+
                 return true;
             }
         });
@@ -219,8 +234,7 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
     //viene de controladorasubida
     @Override
     public void onUpdateClick(String tipo, String ruta, String nombre) {
-        uploadMultipart(this, ruta, String.valueOf(id), nombre);
-
+        uploadMultipart(this, ruta, String.valueOf(id), nombre,"file/upload/");
     }
 
     //viene de controladorasubida
@@ -257,7 +271,7 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
                 Fragment fScr = fm.findFragmentByTag(TAG_SCRAP);
                 if (fScr != null) {
 
-                    ((ControladoraSubida) fScr).setTextRuta(data.getDataString());
+                    ((ControladoraScrappy) fScr).setTextRutaScrappy(data.getDataString());
                 }
                 ft.commit();
                 break;
@@ -510,8 +524,8 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
         }
     }
 
-    public void uploadMultipart(final Context context, String ruta, String idup, String nombre) {
-        String APIUP = DOMINIO + "file/upload/";
+    public void uploadMultipart(final Context context, String ruta, String idup, String nombre,String API) {
+        String APIUP = DOMINIO + API;
         try {
             UploadNotificationConfig unc = new UploadNotificationConfig();
             new MultipartUploadRequest(context, idup, APIUP)
@@ -545,7 +559,7 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
 
     @Override
     public void onScrappyClickUp(String archivo, String nombre) {
-        uploadMultipart(this, archivo, String.valueOf(id), nombre);
+        uploadMultipart(this, archivo, String.valueOf(id), nombre,"file/scrapy/");
     }
     //Fuente: https://www.iteramos.com/pregunta/14535/convertir-archivo-uri-al-archivo-en-android
 }

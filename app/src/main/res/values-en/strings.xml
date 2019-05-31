@@ -46,4 +46,7 @@
     <string name="logout">Log in</string>
     <string name="servicess">Services</string>
     <string name="Ecommerse">E-commerse</string>
+    <string name="asunto">Subjet</string>
+    <string name="contacto">Contact</string>
+    <string name="nonombre">The title is not blank</string>
 </resources>

@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/Reguser"
-        android:text="sap"
         android:textAlignment="center" />
 
     <EditText
@@ -18,7 +17,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/Regnom"
-        android:text="sap"
         android:textAlignment="center" />
 
     <EditText
@@ -26,7 +24,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/RegApe"
-        android:text="sap"
         android:textAlignment="center" />
 
     <EditText
@@ -35,7 +32,6 @@
         android:layout_height="wrap_content"
         android:hint="@string/Regcor"
         android:inputType="textEmailAddress"
-        android:text="sap@sap.com"
         android:textAlignment="center" />
 
     <EditText
@@ -44,7 +40,6 @@
         android:layout_height="wrap_content"
         android:hint="@string/Regcor2"
         android:inputType="textEmailAddress"
-        android:text="sap@sap.com"
         android:textAlignment="center" />
 
     <EditText
@@ -53,7 +48,6 @@
         android:layout_height="wrap_content"
         android:hint="@string/pass"
         android:inputType="textPassword"
-        android:text="sap"
         android:textAlignment="center" />
 
     <EditText
@@ -62,7 +56,6 @@
         android:layout_height="wrap_content"
         android:hint="@string/pass2"
         android:inputType="textPassword"
-        android:text="sap"
         android:textAlignment="center" />
 
     <Button
