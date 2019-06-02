@@ -48,4 +48,5 @@
     <string name="asunto">Asunto</string>
     <string name="contacto">Contacto</string>
     <string name="nonombre">El nombre no puede estar vacío</string>
+    <string name="qsomos">Quienes somos</string>
 </resources>

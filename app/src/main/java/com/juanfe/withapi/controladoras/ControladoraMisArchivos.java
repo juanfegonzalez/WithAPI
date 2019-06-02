@@ -23,6 +23,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.juanfe.withapi.R;
 import com.juanfe.withapi.adaptadores.AdaptadorRMisArchivos;
+import com.juanfe.withapi.utils.Constantes;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -67,6 +68,7 @@ public class ControladoraMisArchivos extends Fragment {
     private void rellenarLista() {
         lista_archivos = new ArrayList<String>();
         //enviar id y apitoken
+        enviarJsonToken(user);
 
 
 
@@ -96,11 +98,14 @@ public class ControladoraMisArchivos extends Fragment {
         return archivos;
     }
 
+    //ULQNw0csmQpjSms9qfKzwPW7nqJVw6
+
     private void enviarJsonToken(String user) {
         String API = APITOKEN;
 
         HashMap<String, String> hm = new HashMap();
         hm.put("userid", String.valueOf(id));
+        hm.put("WWW-Authenticate", "Bearer realm="+token);
         JSONObject jsonObject = new JSONObject(hm);
 
 
@@ -145,7 +150,7 @@ public class ControladoraMisArchivos extends Fragment {
 
     private void procesarRespuestaFiles(JSONObject response) throws JSONException {
 
-        String b = (String) response.get("");
+        String b = (String) response.get("salida");
     }
 
 

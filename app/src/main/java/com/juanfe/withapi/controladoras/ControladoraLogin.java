@@ -67,9 +67,7 @@ public class ControladoraLogin extends Fragment implements View.OnClickListener 
 
         }else if (v.getId()==R.id.recuperar){
             onLoginListener.onRecordarClick();
-
         }
-
     }
 
     public interface OnLoginListener{

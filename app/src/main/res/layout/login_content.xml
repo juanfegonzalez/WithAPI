@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20sp"
         android:hint="@string/user"
-        android:text="admin" />
+        android:text="juanfe" />
 
     <EditText
         android:id="@+id/pass"
@@ -20,7 +20,7 @@
         android:layout_marginBottom="20sp"
         android:hint="@string/pass"
         android:inputType="textPassword"
-        android:text="admin" />
+        android:text="12345admin" />
 
     <LinearLayout
         android:layout_width="match_parent"

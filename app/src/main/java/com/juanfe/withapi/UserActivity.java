@@ -8,8 +8,6 @@ import androidx.annotation.Nullable;
 
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -18,8 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.autofill.AutofillValue;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +32,7 @@ import com.juanfe.withapi.adaptadores.AdaptadorRMisArchivos;
 import com.juanfe.withapi.controladoras.ControladoraBonos;
 import com.juanfe.withapi.controladoras.ControladoraFAQS;
 import com.juanfe.withapi.controladoras.ControladoraMisArchivos;
+import com.juanfe.withapi.controladoras.ControladoraQSomos;
 import com.juanfe.withapi.controladoras.ControladoraScrappy;
 import com.juanfe.withapi.controladoras.ControladoraSettings;
 import com.juanfe.withapi.controladoras.ControladoraSubida;
@@ -88,10 +85,10 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
     private static final String TAG_UP = "subida";
     private static final String TAG_SCRAP = "scrapping";
     private static final String TAG_SCRP = "scrappy";
+    private static final String TAG_WA = "who are";
 
 
     FrameLayout u_sitio;
-    DrawerLayout drawer;
     String user, pass, nombre, apellido, email, token;
     int id;
     NavigationView nav;
@@ -163,6 +160,9 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
                         break;
 
                     case R.id.who:
+                        ft.add(u_sitio.getId(), new ControladoraQSomos(), TAG_WA);
+                        ft.addToBackStack(TAG_WA);
+                        ft.commit();
 
                         break;
 
@@ -198,9 +198,6 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
                         break;
 
                 }
-                //drawer.getvi
-
-
                 return true;
             }
         });
@@ -209,17 +206,13 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
     //carga la letra del usuario en el header del nav
     private void cargarLetra() {
 
-
         if (nombre.toCharArray().length > 0) {
             letra = String.valueOf(nombre.charAt(0));
             textheader.setText(letra);
-
         } else {
-
             letra = "Unknown";
             //TODO poner imagen png de fondo como que no se sabe quien es
             textheader.setText(letra);
-
         }
     }
 
@@ -227,7 +220,8 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
     @Override
     public void onClickRecycler(String nombre) {
         //TODO hacer llamada descarga de archico mas adelante
-        //downloadFile("", new File(nombre));
+        String url = DOMINIO + "media/";
+        downloadFile(url+nombre, new File(nombre));
 
     }
 
@@ -390,8 +384,11 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
 
         Log.v("test", response.toString());
 
+
         if (ok) {
             enviarJsonToken(user);
+
+        }else {
 
         }
 
@@ -422,7 +419,7 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
         String API = DOMINIO + "usuarios/bono_usuario/";
 
 
-        HashMap<String, String> hm = new HashMap();
+        HashMap<String, String> hm = new HashMap<String, String>();
         hm.put("usuario", String.valueOf(userid));
         hm.put("bono", id);
         JSONObject jsonObject = new JSONObject(hm);
@@ -438,7 +435,6 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
                     e.printStackTrace();
                 }
                 // Log.v("test", response.toString());
-
 
             }
         }, new Response.ErrorListener() {
@@ -524,6 +520,7 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
         }
     }
 
+    //sube el archivo al servidor
     public void uploadMultipart(final Context context, String ruta, String idup, String nombre,String API) {
         String APIUP = DOMINIO + API;
         try {
@@ -561,5 +558,5 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
     public void onScrappyClickUp(String archivo, String nombre) {
         uploadMultipart(this, archivo, String.valueOf(id), nombre,"file/scrapy/");
     }
-    //Fuente: https://www.iteramos.com/pregunta/14535/convertir-archivo-uri-al-archivo-en-android
+
 }

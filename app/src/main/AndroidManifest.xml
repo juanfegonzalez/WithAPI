@@ -18,7 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".UserActivity"></activity>
+        <activity android:name=".UserActivity">
+
+        </activity>
         <activity android:name=".Splash2Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,7 +41,9 @@
                     android:pathPattern="/admin" />
             </intent-filter>
         </activity>
-        <activity android:name=".FragmentActivity"></activity>
+        <activity android:name=".FragmentActivity">
+
+        </activity>
     </application>
 
 </manifest>

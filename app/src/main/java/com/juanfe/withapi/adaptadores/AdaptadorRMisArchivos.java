@@ -1,12 +1,15 @@
 package com.juanfe.withapi.adaptadores;
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.juanfe.withapi.R;
@@ -28,9 +31,8 @@ public class AdaptadorRMisArchivos extends RecyclerView.Adapter<AdaptadorRMisArc
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(context).inflate(R.layout.item_recycler, viewGroup,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.item_recycler, viewGroup, false);
         Holder h = new Holder(v);
-
         return h;
     }
 
@@ -38,13 +40,12 @@ public class AdaptadorRMisArchivos extends RecyclerView.Adapter<AdaptadorRMisArc
     public void onBindViewHolder(@NonNull Holder holder, int i) {
         final String nombre = (String) lista.get(i);
         holder.getNombreArchivo().setText(nombre);
-        holder.getDescarga().setOnClickListener(new View.OnClickListener() {
+        holder.getLinear().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 orl.onClickRecycler(nombre);
             }
         });
-
     }
 
     @Override
@@ -55,25 +56,26 @@ public class AdaptadorRMisArchivos extends RecyclerView.Adapter<AdaptadorRMisArc
     class Holder extends RecyclerView.ViewHolder {
 
         TextView nombreArchivo;
-        Button descarga;
+        LinearLayout linear;
 
         public TextView getNombreArchivo() {
             return nombreArchivo;
         }
 
-        public Button getDescarga() {
-            return descarga;
-        }
 
         public Holder(@NonNull View itemView) {
             super(itemView);
 
             nombreArchivo = itemView.findViewById(R.id.nombreArchivo);
-            descarga = itemView.findViewById(R.id.descarga);
+            linear = itemView.findViewById(R.id.line1);
+        }
+
+        public LinearLayout getLinear() {
+            return linear;
         }
     }
 
-    public interface OnReciclerListener{
+    public interface OnReciclerListener {
         void onClickRecycler(String nombre);
     }
 }

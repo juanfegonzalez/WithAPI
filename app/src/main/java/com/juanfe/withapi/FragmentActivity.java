@@ -244,6 +244,8 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
             i.putExtra(TAG_SWAP_LOG_P,password);
             i.putExtra(TAG_SWAP_LOG_E,email);
             i.putExtra(TAG_SWAP_LOG_I,id);
+        }else {
+            Toast.makeText(getApplicationContext(),"el usuario no existe o la contraseña es incorrecta",Toast.LENGTH_LONG).show();
         }
 
     }
@@ -314,7 +316,6 @@ public class FragmentActivity extends AppCompatActivity implements ControladorRe
     public void onDialogoRecuClick(String emailouser) {
         DialogoRevisarCorreo d = new DialogoRevisarCorreo();
         d.show(getSupportFragmentManager(),TAG_REV_CONTRA);
-
 
     }
 

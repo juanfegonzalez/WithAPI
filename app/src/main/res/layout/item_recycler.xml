@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:background="@android:drawable/picture_frame"
     android:backgroundTintMode="src_in"
+    android:id="@+id/line1"
     android:orientation="horizontal">
 
     <TextView
@@ -11,5 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:textSize="30sp" />
+
 
 </LinearLayout>
