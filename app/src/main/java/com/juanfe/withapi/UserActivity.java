@@ -1,5 +1,8 @@
 package com.juanfe.withapi;
 
+import android.Manifest;
+import android.app.DownloadManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
@@ -8,14 +11,24 @@ import androidx.annotation.Nullable;
 
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,14 +59,6 @@ import net.gotev.uploadservice.UploadNotificationConfig;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -86,6 +91,7 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
     private static final String TAG_SCRAP = "scrapping";
     private static final String TAG_SCRP = "scrappy";
     private static final String TAG_WA = "who are";
+    private static final short REQUEST_CODE = 6545;
 
 
     FrameLayout u_sitio;
@@ -95,12 +101,17 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
     TextView textheader;
     String letra;
     Boolean ok;
+    Long iddown;
+    DownloadManager mgr;
+    private long lastDownload=-1L;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+        preguntarPermisos();
+        mgr = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
         u_sitio = findViewById(R.id.sitiouser);
         user = getIntent().getStringExtra(TAG_SWAP_LOG_U);
         token = getIntent().getStringExtra(TAG_SWAP_LOG_T);
@@ -219,16 +230,110 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
     //viene de adaptador de misarchivos
     @Override
     public void onClickRecycler(String nombre) {
-        //TODO hacer llamada descarga de archico mas adelante
         String url = DOMINIO + "media/";
-        downloadFile(url+nombre, new File(nombre));
 
+        startDownload(url+nombre,nombre);
     }
+
+    public void startDownload(String url,String nombre) {
+        Uri uri=Uri.parse(url);
+
+        Environment
+                .getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+                .mkdirs();
+
+        lastDownload=
+                mgr.enqueue(new DownloadManager.Request(uri)
+                        .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI |
+                                DownloadManager.Request.NETWORK_MOBILE)
+                        .setAllowedOverRoaming(false)
+                        .setTitle(nombre)
+                        .setDescription("Something useful. No, really.")
+                        .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,
+                                nombre));
+        queryStatus();
+        viewLog();
+    }
+
+    public void queryStatus() {
+        Cursor c=mgr.query(new DownloadManager.Query().setFilterById(lastDownload));
+
+        if (c==null) {
+            Toast.makeText(this, "Download not found!", Toast.LENGTH_LONG).show();
+        }
+        else {
+            c.moveToFirst();
+
+            Log.d(getClass().getName(), "COLUMN_ID: "+
+                    c.getLong(c.getColumnIndex(DownloadManager.COLUMN_ID)));
+            Log.d(getClass().getName(), "COLUMN_BYTES_DOWNLOADED_SO_FAR: "+
+                    c.getLong(c.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR)));
+            Log.d(getClass().getName(), "COLUMN_LAST_MODIFIED_TIMESTAMP: "+
+                    c.getLong(c.getColumnIndex(DownloadManager.COLUMN_LAST_MODIFIED_TIMESTAMP)));
+            Log.d(getClass().getName(), "COLUMN_LOCAL_URI: "+
+                    c.getString(c.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI)));
+            Log.d(getClass().getName(), "COLUMN_STATUS: "+
+                    c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS)));
+            Log.d(getClass().getName(), "COLUMN_REASON: "+
+                    c.getInt(c.getColumnIndex(DownloadManager.COLUMN_REASON)));
+
+            Toast.makeText(this, statusMessage(c), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void viewLog() {
+        startActivity(new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS));
+    }
+
+    private String statusMessage(Cursor c) {
+        String msg="???";
+
+        switch(c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS))) {
+            case DownloadManager.STATUS_FAILED:
+                msg="Download failed!";
+                break;
+
+            case DownloadManager.STATUS_PAUSED:
+                msg="Download paused!";
+                break;
+
+            case DownloadManager.STATUS_PENDING:
+                Log.v("descarga","");
+                msg="Download pending!";
+                break;
+
+            case DownloadManager.STATUS_RUNNING:
+                msg="Download in progress!";
+                break;
+
+            case DownloadManager.STATUS_SUCCESSFUL:
+                msg="Download complete!";
+                break;
+
+            default:
+                msg="Download is nowhere in sight";
+                break;
+        }
+
+        return(msg);
+    }
+
+    BroadcastReceiver onComplete=new BroadcastReceiver() {
+        public void onReceive(Context ctxt, Intent intent) {
+
+        }
+    };
+
+    BroadcastReceiver onNotificationClick=new BroadcastReceiver() {
+        public void onReceive(Context ctxt, Intent intent) {
+            Toast.makeText(ctxt, "Ummmm...hi!", Toast.LENGTH_LONG).show();
+        }
+    };
 
     //viene de controladorasubida
     @Override
     public void onUpdateClick(String tipo, String ruta, String nombre) {
-        uploadMultipart(this, ruta, String.valueOf(id), nombre,"file/upload/");
+        uploadMultipart(this, ruta, String.valueOf(id), nombre, "file/upload/");
     }
 
     //viene de controladorasubida
@@ -260,7 +365,7 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
                 }
                 ft.commit();
                 break;
-            case PICKFILE_TO_SCRAPPY :
+            case PICKFILE_TO_SCRAPPY:
 
                 Fragment fScr = fm.findFragmentByTag(TAG_SCRAP);
                 if (fScr != null) {
@@ -388,7 +493,7 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
         if (ok) {
             enviarJsonToken(user);
 
-        }else {
+        } else {
 
         }
 
@@ -475,28 +580,6 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
         }
     }
 
-    private static void downloadFile(String url, File outputFile) {
-        try {
-            URL u = new URL(url);
-            URLConnection conn = u.openConnection();
-            int contentLength = conn.getContentLength();
-
-            DataInputStream stream = new DataInputStream(u.openStream());
-
-            byte[] buffer = new byte[contentLength];
-            stream.readFully(buffer);
-            stream.close();
-
-            DataOutputStream fos = new DataOutputStream(new FileOutputStream(outputFile));
-            fos.write(buffer);
-            fos.flush();
-            fos.close();
-        } catch (FileNotFoundException e) {
-            return; // swallow a 404
-        } catch (IOException e) {
-            return; // swallow a 404
-        }
-    }
 
     //viene de controladora faqs y hace su funcion al pulsar el boton
     //vuelve hacia atras
@@ -521,7 +604,7 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
     }
 
     //sube el archivo al servidor
-    public void uploadMultipart(final Context context, String ruta, String idup, String nombre,String API) {
+    public void uploadMultipart(final Context context, String ruta, String idup, String nombre, String API) {
         String APIUP = DOMINIO + API;
         try {
             UploadNotificationConfig unc = new UploadNotificationConfig();
@@ -548,6 +631,7 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
             e.printStackTrace();
         }
     }
+
     //viene de controladora scrappy
     @Override
     public void onScrappyClickSearch() {
@@ -556,7 +640,52 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
 
     @Override
     public void onScrappyClickUp(String archivo, String nombre) {
-        uploadMultipart(this, archivo, String.valueOf(id), nombre,"file/scrapy/");
+        uploadMultipart(this, archivo, String.valueOf(id), nombre, "file/scrapy/");
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_CODE: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted! Do the work
+
+                } else {
+                    // permission denied!
+                    Toast.makeText(this, R.string.permisos, Toast.LENGTH_LONG).show();
+                }
+                return;
+            }
+        }
+    }
+
+    public void preguntarPermisos() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+                // Show an expanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+
+            } else {
+
+                // No explanation needed, we can request the permission.
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        REQUEST_CODE);
+
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+        }
+
+    }
 }

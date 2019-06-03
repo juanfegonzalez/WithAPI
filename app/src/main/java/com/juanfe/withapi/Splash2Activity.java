@@ -9,13 +9,14 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.juanfe.withapi.utils.WithAPI;
 
 public class Splash2Activity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_READ_STORAGE = 100;
-    private static final int MY_PERMISSIONS_REQUEST_WRITE_STORAGE = 1;
+    private static final int MY_PERMISSIONS_REQUEST_WRITE_STORAGE = 6545;
 
 
     @Override
@@ -34,7 +35,6 @@ public class Splash2Activity extends AppCompatActivity {
 
             }
         },2000);
-        //MIRAR COMO ALMACENAR EN ARCHIVO DE TEXTO LAS VARIABLES DE CLIENTID Y CLIENTSECRET
     }
 
     public void preguntarPermisos(){
@@ -52,7 +52,7 @@ public class Splash2Activity extends AppCompatActivity {
 
             } else {
 
-                // No explanation needed, we can request the permission.
+
 
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
@@ -63,6 +63,20 @@ public class Splash2Activity extends AppCompatActivity {
                 // result of the request.
             }
         }
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        MY_PERMISSIONS_REQUEST_WRITE_STORAGE);
+            }
+        }
+
+
 
     }
     @Override
@@ -73,9 +87,7 @@ public class Splash2Activity extends AppCompatActivity {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
-
+                    Log.v("permisos", "los has dado satisfactoriamente");
 
 
                 } else {
@@ -84,8 +96,25 @@ public class Splash2Activity extends AppCompatActivity {
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
                 }
-                return;
+
             }
+            case MY_PERMISSIONS_REQUEST_WRITE_STORAGE: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    Log.v("permisos", "los has dado satisfactoriamente");
+
+
+                } else {
+                    Toast.makeText(getApplicationContext(),"no puedes acceder porque no has dado permisos",Toast.LENGTH_SHORT).show();
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+
+            }
+
 
             // other 'case' lines to check for other
             // permissions this app might request

@@ -98,9 +98,6 @@ public class ControladorRegistro extends Fragment implements View.OnClickListene
             }else {
                 enviarJson();
                 Log.i("test", "haentrado");
-
-
-
            }
         }
     }

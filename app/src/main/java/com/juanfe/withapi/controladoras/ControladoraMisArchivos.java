@@ -25,6 +25,7 @@ import com.juanfe.withapi.R;
 import com.juanfe.withapi.adaptadores.AdaptadorRMisArchivos;
 import com.juanfe.withapi.utils.Constantes;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,6 +34,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.juanfe.withapi.utils.Constantes.APITOKEN;
+import static com.juanfe.withapi.utils.Constantes.DOMINIO;
 
 
 public class ControladoraMisArchivos extends Fragment {
@@ -52,13 +54,7 @@ public class ControladoraMisArchivos extends Fragment {
         View v = inflater.inflate(R.layout.mis_archivos,container,false);
         misarchivos = v.findViewById(R.id.recyclerArchivos);
         rellenarLista();
-        AdaptadorRMisArchivos  adaptador = new AdaptadorRMisArchivos(context,lista_archivos);
-        misarchivos.setAdapter(adaptador);
-        misarchivos.setLayoutManager(new LinearLayoutManager(context, RecyclerView.VERTICAL,
-                false));
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(misarchivos.getContext(),
-                ((LinearLayoutManager) misarchivos.getLayoutManager()).getOrientation());
-        misarchivos.addItemDecoration(dividerItemDecoration);
+
         return v;
     }
 
@@ -68,7 +64,7 @@ public class ControladoraMisArchivos extends Fragment {
     private void rellenarLista() {
         lista_archivos = new ArrayList<String>();
         //enviar id y apitoken
-        enviarJsonToken(user);
+        enviarJsonToken(user,pass);
 
 
 
@@ -100,12 +96,13 @@ public class ControladoraMisArchivos extends Fragment {
 
     //ULQNw0csmQpjSms9qfKzwPW7nqJVw6
 
-    private void enviarJsonToken(String user) {
-        String API = APITOKEN;
+    private void enviarJsonToken(String user,String pass) {
+        String API = DOMINIO+"usuarios/list_files/";
 
         HashMap<String, String> hm = new HashMap();
-        hm.put("userid", String.valueOf(id));
-        hm.put("WWW-Authenticate", "Bearer realm="+token);
+        hm.put("id", String.valueOf(id));
+        hm.put("username", user);
+        hm.put("Autorization", "Bearer "+token);
         JSONObject jsonObject = new JSONObject(hm);
 
 
@@ -132,9 +129,7 @@ public class ControladoraMisArchivos extends Fragment {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 final HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("autorization","Bearer "+ token);
-                headers.put("Access-Control-Allow-Origin", "*");
-                headers.put("Content-Type", "application/json");
+                headers.put("Authorization","Bearer "+ token);
                 return headers;
             }
 
@@ -148,9 +143,40 @@ public class ControladoraMisArchivos extends Fragment {
         requestQueue.add(peticionJSON);
     }
 
-    private void procesarRespuestaFiles(JSONObject response) throws JSONException {
 
-        String b = (String) response.get("salida");
+
+
+    private void procesarRespuestaFiles(JSONObject response) throws JSONException {
+        boolean ok = response.getBoolean("ok");
+
+        //Log.v("test",response.toString());
+
+        if (ok){
+
+            JSONArray sal = response.getJSONArray("request");
+
+            for (int i = 0 ; i <sal.length();i++){
+                JSONObject obj = (JSONObject) sal.get(i);
+                char[] nombre = obj.getString("documento").toCharArray();
+                String docu="";
+                for (int j = 7; j<nombre.length;j++){
+                    docu += nombre[j];
+                }
+                lista_archivos.add(docu);
+                Log.v("lista",lista_archivos.get(i));
+
+            }
+
+            AdaptadorRMisArchivos  adaptador = new AdaptadorRMisArchivos(context,lista_archivos);
+            misarchivos.setAdapter(adaptador);
+            misarchivos.setLayoutManager(new LinearLayoutManager(context, RecyclerView.VERTICAL,
+                    false));
+            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(misarchivos.getContext(),
+                    ((LinearLayoutManager) misarchivos.getLayoutManager()).getOrientation());
+            misarchivos.addItemDecoration(dividerItemDecoration);
+
+
+        }
     }
 
 

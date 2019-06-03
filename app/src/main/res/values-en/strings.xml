@@ -50,4 +50,5 @@
     <string name="contacto">Contact</string>
     <string name="nonombre">The title is not blank</string>
     <string name="qsomos">Who are</string>
+    <string name="permisos">Please give permissions</string>
 </resources>
