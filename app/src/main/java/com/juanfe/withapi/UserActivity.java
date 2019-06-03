@@ -350,6 +350,8 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
 
+        Log.v("onresponse", String.valueOf(requestCode));
+
         switch (requestCode) {
 
             case PICKFILE_REQUEST_CODE:
@@ -363,7 +365,8 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
                 break;
             case PICKFILE_TO_SCRAPPY:
 
-                Fragment fScr = fm.findFragmentByTag(TAG_SCRAP);
+                Fragment fScr = fm.findFragmentByTag(TAG_SCRP);
+                Log.v("test",fScr.getTag());
                 if (fScr != null) {
 
                     ((ControladoraScrappy) fScr).setTextRutaScrappy(data.getDataString());
@@ -621,7 +624,7 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
         intent.setType("*/*");
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         try {
-            startActivityForResult(Intent.createChooser(intent, "R.string.nombrearchivo"), code);
+            startActivityForResult(Intent.createChooser(intent, "R.string.nombrearchivo"),code);
 
         } catch (Exception e) {
             e.printStackTrace();
