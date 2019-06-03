@@ -18,17 +18,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -75,7 +71,8 @@ import static com.juanfe.withapi.utils.Constantes.CLIENTSECRET;
 import static com.juanfe.withapi.utils.Constantes.DOMINIO;
 
 public class UserActivity extends AppCompatActivity implements AdaptadorRMisArchivos.OnReciclerListener,
-        ControladoraSubida.OnUpdateListener, ControladoraSettings.OnSettingsListener, AdaptadorBonos.OnCheckedListener,
+        ControladoraSubida.OnUpdateListener, ControladoraSettings.OnSettingsListener,
+        AdaptadorBonos.OnCheckedListener,
         ControladoraFAQS.OnFAQSListener, ControladoraScrappy.OnScrappyListener {
 
 
@@ -101,7 +98,6 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
     TextView textheader;
     String letra;
     Boolean ok;
-    Long iddown;
     DownloadManager mgr;
     private long lastDownload=-1L;
 
