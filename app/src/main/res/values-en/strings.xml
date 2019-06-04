@@ -51,4 +51,5 @@
     <string name="nonombre">The title is not blank</string>
     <string name="qsomos">Who are</string>
     <string name="permisos">Please give permissions</string>
+    <string name="Myfiles">My Files</string>
 </resources>

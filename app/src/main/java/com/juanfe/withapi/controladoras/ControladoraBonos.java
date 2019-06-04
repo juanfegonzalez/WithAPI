@@ -50,6 +50,7 @@ public class ControladoraBonos extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.bonos_content,container,false);
+
         lista =new ArrayList();
         enviarJson();
         Log.v("array", String.valueOf(lista.size()));

@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.app.LoaderManager;
 
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -49,12 +50,14 @@ import com.juanfe.withapi.controladoras.ControladoraWeb;
 import com.juanfe.withapi.dialogos.DialogoSettingsGuardar;
 
 
+import net.gotev.uploadservice.BinaryUploadRequest;
 import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.UploadNotificationConfig;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -330,7 +333,9 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
     @Override
     public void onUpdateClick(String tipo, String ruta, String nombre) {
         uploadMultipart(this, ruta, String.valueOf(id), nombre, "file/upload/");
+        uploadBinary(this,ruta, String.valueOf(id),nombre,"file/upload/");
     }
+
 
     //viene de controladorasubida
     @Override
@@ -520,7 +525,7 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
 
     // vieene de controladora bonos y envia json de bonos
     private void enviarJsonBono(int userid, String id) {
-        String API = DOMINIO + "usuarios/bono_usuario/";
+        String API = DOMINIO + "usuarios/comprar_bono/";
 
 
         HashMap<String, String> hm = new HashMap<String, String>();
@@ -607,9 +612,12 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
         String APIUP = DOMINIO + API;
         try {
             UploadNotificationConfig unc = new UploadNotificationConfig();
-            new MultipartUploadRequest(context, idup, APIUP)
+
+            new MultipartUploadRequest(context, APIUP)
                     // you can also use content:// url de final
                     .addFileToUpload(ruta, nombre)
+                    .addParameter("proceso","TB")
+                    .addParameter("descripcion","adios")
                     .setNotificationConfig(unc)
                     .setMaxRetries(2)
                     .startUpload();
@@ -617,6 +625,30 @@ public class UserActivity extends AppCompatActivity implements AdaptadorRMisArch
             Log.e("AndroidUploadService", exc.getMessage(), exc);
         }
     }
+
+    public void uploadBinary(final Context context, String ruta, String idup, String nombre, String API) {
+        try {
+            // starting from 3.1+, you can also use content:// URI string instead of absolute file
+            UploadNotificationConfig upload = new UploadNotificationConfig();
+
+
+
+            String uploadId =
+                    new BinaryUploadRequest(context, DOMINIO+API)
+                            .setFileToUpload(ruta)
+                            .addHeader("file-name", new File(ruta).getName())
+                            .addParameter("descripcion",nombre)
+                            .addParameter("proceso","TB")
+                            .addParameter("usuario",idup).setNotificationConfig(upload)
+                            .setMaxRetries(2)
+                            .startUpload();
+            Log.e("AndroidUploadService", "");
+        } catch (Exception exc) {
+            Log.e("AndroidUploadService", exc.getMessage());
+        }
+    }
+
+
 
     public void buscarArchivo(int code) {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
